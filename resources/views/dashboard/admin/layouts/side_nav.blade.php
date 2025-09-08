@@ -21,19 +21,11 @@
         <ul class="side-nav">
             <li class="side-nav-title">Dashboard</li>
 
-            <li class="side-nav-item">
-                <a href="{{ route('admin.dashboard') }}" class="side-nav-link">
-                    <span class="menu-icon"><i class="ti ti-dashboard"></i></span>
-                    <span class="menu-text"> Dashboard </span>
-                </a>
-            </li>
+            <x-admin-sidebar-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')"
+                :icon="'ti ti-layout-dashboard'">Dashboard</x-admin-sidebar-nav-link>
 
-            <li class="side-nav-item">
-                <a href="javascript:void(0);" class="side-nav-link">
-                    <span class="menu-icon"><i class="ti ti-box"></i></span>
-                    <span class="menu-text"> Shipments </span>
-                </a>
-            </li>
+            <x-admin-sidebar-nav-link href="{{ route('admin.shipment.index') }}" :active="request()->routeIs('admin.shipment.*')"
+                :icon="'ti ti-package'">Shipments</x-admin-sidebar-nav-link>
         </ul>
     </div>
 </div>
