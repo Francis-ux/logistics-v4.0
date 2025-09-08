@@ -15,8 +15,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">Manage and Track All Shipments</h4>
+                    </div>
                     <div class="card-body">
-                        
+                        <x-admin-shipments :shipments="$shipments" />
                     </div><!-- end card-body -->
                 </div><!-- end card -->
             </div>

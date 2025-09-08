@@ -28,4 +28,19 @@ enum ShipmentStatus: string
             self::Arrived => 'Arrived',
         };
     }
+
+    public function badge(): string
+    {
+        return match ($this) {
+            self::PickedUp => 'badge bg-primary-subtle text-primary fs-12 p-1',
+            self::OnHold => 'badge bg-warning-subtle text-warning fs-12 p-1',
+            self::OutForDelivery => 'badge bg-warning-subtle text-warning fs-12 p-1',
+            self::InTransit => 'badge bg-warning-subtle text-warning fs-12 p-1',
+            self::EnRoute => 'badge bg-warning-subtle text-warning fs-12 p-1',
+            self::Cancelled => 'badge bg-danger-subtle text-danger fs-12 p-1',
+            self::Delivered => 'badge bg-success-subtle text-success fs-12 p-1',
+            self::Returned => 'badge bg-danger-subtle text-danger fs-12 p-1',
+            self::Arrived => 'badge bg-success-subtle text-success fs-12 p-1',
+        };
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Shipment;
 use Illuminate\Http\Request;
 
 class ShipmentController extends Controller
@@ -17,9 +18,12 @@ class ShipmentController extends Controller
             ['label' => 'Shipments', 'url' => route('admin.shipment.index'), 'active' => true]
         ];
 
+        $shipments = Shipment::latest()->get();
+
         $data = [
             'title' => 'Shipments',
-            'breadcrumbs' => $breadcrumbs
+            'breadcrumbs' => $breadcrumbs,
+            'shipments' => $shipments
         ];
 
         return view('dashboard.admin.shipment.index', $data);

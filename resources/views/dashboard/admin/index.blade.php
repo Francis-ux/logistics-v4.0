@@ -15,15 +15,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">Manage and Track All Shipments</h4>
+                    </div>
                     <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-check-circle-fill fs-24 text-success me-2"></i>
-                            <div class="flex-grow-1">
-                                <h5 class="mb-0">Welcome Admin!</h5>
-                                <p class="mb-0">This is the admin dashboard, from here you can manage all administrative
-                                    tasks.</p>
-                            </div>
-                        </div>
+                        <x-admin-shipments :shipments="$shipments" />
                     </div><!-- end card-body -->
                 </div><!-- end card -->
             </div>

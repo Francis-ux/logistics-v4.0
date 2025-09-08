@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Shipment;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -17,9 +18,12 @@ class DashboardController extends Controller
             ['label' => 'Welcome Admin', 'url' => route('admin.dashboard'), 'active' => true]
         ];
 
+        $shipments = Shipment::latest()->get();
+
         $data = [
             'title' => 'Welcome Admin',
-            'breadcrumbs' => $breadcrumbs
+            'breadcrumbs' => $breadcrumbs,
+            'shipments' => $shipments
         ];
 
         return view('dashboard.admin.index', $data);
