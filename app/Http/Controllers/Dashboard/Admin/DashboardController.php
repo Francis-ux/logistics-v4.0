@@ -12,7 +12,15 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $data = ['title' => 'Admin Dashboard'];
+        $breadcrumbs = [
+            ['label' => config('app.name'), 'url' => '/'],
+            ['label' => 'Welcome Admin', 'url' => route('admin.dashboard'), 'active' => true]
+        ];
+
+        $data = [
+            'title' => 'Welcome Admin',
+            'breadcrumbs' => $breadcrumbs
+        ];
 
         return view('dashboard.admin.index', $data);
     }

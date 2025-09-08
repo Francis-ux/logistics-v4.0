@@ -7,9 +7,9 @@
                 <h4 class="fs-18 fw-semibold mb-0">{{ $title }}</h4>
             </div>
 
-            {{-- <div class="text-end">
-                @include('dashboard.user.layouts.components.breadcrumbs')
-            </div> --}}
+            <div class="text-end">
+                <x-admin-breadcrumbs :breadcrumbs="$breadcrumbs" />
+            </div>
         </div>
 
         <div class="row">
