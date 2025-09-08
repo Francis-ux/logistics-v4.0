@@ -26,24 +26,19 @@
                      <td>{{ formatDate($shipment->departure_date) }}</td>
                      <td>{{ formatDate($shipment->arrival_date) }}</td>
                      <td>
-                         <span>
-                             <span class="{{ $shipment->status->badge() }}">{{ $shipment->status->label() }}</span>
-                         </span>
+                         <span class="{{ $shipment->status->badge() }}">{{ $shipment->status->label() }}</span>
                      </td>
                      <td>
-                         <a href="#" class="btn btn-soft-primary btn-icon btn-sm rounded-circle m-2">
-                             <i class="ti ti-eye"></i>
-                         </a>
+                         <x-admin-links href="{{ route('admin.shipment.show', $shipment->uuid) }}" :class="'btn btn-primary m-1'"><i
+                                 class="ti ti-package"></i> Shipment Details</x-admin-links>
 
-                         <a onclick="return confirm('Download PDF?')" href="#" target="_blank"
-                             class="btn btn-soft-primary btn-icon btn-sm rounded-circle m-2">
-                             <i class="ti ti-pdf"></i>
-                         </a>
+                         <x-admin-links href="{{ route('admin.shipment.download', $shipment->uuid) }}"
+                             :class="'btn btn-warning m-1'"><i class="ti ti-printer"></i>
+                             Download</x-admin-links>
 
-                         <a onclick="return confirm('Are you sure?')" href="#"
-                             class="btn btn-soft-danger btn-icon btn-sm rounded-circle m-2">
-                             <i class="ti ti-trash"></i>
-                         </a>
+                         <x-admin-method-buttons action="{{ route('admin.shipment.destroy', $shipment->uuid) }}"
+                             :class="'btn btn-danger m-1'"> <i class="ti ti-trash"></i>
+                             Delete</x-admin-method-buttons>
                      </td>
                  </tr>
              @endforeach

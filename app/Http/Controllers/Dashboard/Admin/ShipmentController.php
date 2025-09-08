@@ -48,9 +48,23 @@ class ShipmentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $uuid)
     {
-        //
+        $shipment = Shipment::where('uuid', $uuid)->firstOrFail();
+
+        $breadcrumbs = [
+            ['label' => config('app.name'), 'url' => '/'],
+            ['label' => 'Shipments', 'url' => route('admin.shipment.index')],
+            ['label' => 'Shipment Details', 'url' => route('admin.shipment.show', $uuid), 'active' => true]
+        ];
+
+        $data = [
+            'title' => 'Shipment Details',
+            'breadcrumbs' => $breadcrumbs,
+            'shipment' => $shipment
+        ];
+
+        return view('dashboard.admin.shipment.show', $data);
     }
 
     /**
@@ -73,6 +87,11 @@ class ShipmentController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
+    {
+        dd('shipment destroy');
+    }
+
+    public function download(string $id)
     {
         //
     }
