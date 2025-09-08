@@ -16,7 +16,6 @@
     </button>
 
     <div data-simplebar>
-
         <!--- Sidenav Menu -->
         <ul class="side-nav">
             <li class="side-nav-title">Dashboard</li>

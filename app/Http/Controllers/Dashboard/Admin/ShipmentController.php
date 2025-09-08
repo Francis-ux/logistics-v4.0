@@ -12,7 +12,17 @@ class ShipmentController extends Controller
      */
     public function index()
     {
-        //
+        $breadcrumbs = [
+            ['label' => config('app.name'), 'url' => '/'],
+            ['label' => 'Shipments', 'url' => route('admin.shipment.index'), 'active' => true]
+        ];
+
+        $data = [
+            'title' => 'Shipments',
+            'breadcrumbs' => $breadcrumbs
+        ];
+
+        return view('dashboard.admin.shipment.index', $data);
     }
 
     /**
