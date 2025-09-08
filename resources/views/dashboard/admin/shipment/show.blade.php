@@ -181,7 +181,8 @@
                         <x-admin-links href="#" :class="'btn btn-secondary m-1'"> <i class="ti ti-location-pin"></i>
                             Tracking</x-admin-links>
 
-                        <x-admin-links href="#" :class="'btn btn-warning m-1'"> <i class="ti ti-printer"></i>
+                        <x-admin-links href="{{ route('admin.shipment.download', $shipment->uuid) }}" :class="'btn btn-warning m-1'"> <i
+                                class="ti ti-printer"></i>
                             Download</x-admin-links>
 
                         <x-admin-method-buttons action="{{ route('admin.shipment.destroy', $shipment->uuid) }}"
