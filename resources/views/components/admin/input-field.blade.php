@@ -29,6 +29,16 @@
      @elseif($type === 'textarea')
          <textarea id="{{ $id ?? $name }}" name="{{ $name }}"
              {{ $attributes->merge(['class' => 'form-control ' . ($errors->has($name) ? 'is-invalid' : '')]) }}>{{ old($name, $value) }}</textarea>
+     @elseif($type === 'select3Dimensional')
+         <select id="{{ $id ?? $name }}" name="{{ $name }}"
+             {{ $attributes->merge(['class' => 'form-select ' . ($errors->has($name) ? 'is-invalid' : '')]) }}>
+             <option value="">-- Select {{ $label }} --</option>
+             @foreach ($options as $option)
+                 <option value="{{ $option['name'] }}-{{ $option['code'] }}-{{ $option['symbol'] }}"
+                     {{ old($name, $value) == $option['name'] . '-' . $option['code'] . '-' . $option['symbol'] ? 'selected' : '' }}>
+                     {{ $option['name'] }}</option>
+             @endforeach
+         </select>
      @else
          <input type="{{ $type }}" id="{{ $id ?? $name }}" name="{{ $name }}"
              value="{{ old($name, $value) }}" step="{{ $step }}" min="{{ $min }}"

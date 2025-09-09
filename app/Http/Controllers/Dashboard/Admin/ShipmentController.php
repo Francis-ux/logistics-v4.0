@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreShipmentRequest;
+use App\Models\ShipmentLocation;
 use App\Trait\FileUpload;
 use Illuminate\Support\Facades\Log;
 
@@ -65,10 +66,23 @@ class ShipmentController extends Controller
             DB::beginTransaction();
 
             $validated['uuid'] = str()->uuid();
+            $validated['status'] = $validated['shipment_status'];
             $validated['image'] = $this->imageInterventionUploadFile($request, 'image', '/uploads/shipment/image/', 550, 550);
             $validated['tracking_code'] = getTrackingNumber(config('app.name'));
+            $validated['last_update'] = $validated['departure_date'] . ' ' . $validated['departure_time'];
 
-            Shipment::create($validated);
+            $shipment = Shipment::create($validated);
+
+            ShipmentLocation::create([
+                'uuid' => str()->uuid(),
+                'shipment_id' => $shipment->id,
+                'location' => $shipment->current_location,
+                'google_map_location' => $shipment->current_location,
+                'description' => $shipment->description,
+                'date' => $shipment->departure_date,
+                'time' => $shipment->departure_time,
+                'status' => $shipment->status->value
+            ]);
 
             DB::commit();
 

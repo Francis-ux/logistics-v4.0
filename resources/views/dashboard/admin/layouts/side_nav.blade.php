@@ -20,11 +20,11 @@
         <ul class="side-nav">
             <li class="side-nav-title">Dashboard</li>
 
-            <x-admin-sidebar-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')"
-                :icon="'ti ti-layout-dashboard'">Dashboard</x-admin-sidebar-nav-link>
+            <x-admin.sidebar-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')"
+                :icon="'ti ti-layout-dashboard'">Dashboard</x-admin.sidebar-nav-link>
 
-            <x-admin-sidebar-nav-link href="{{ route('admin.shipment.index') }}" :active="request()->routeIs('admin.shipment.*')"
-                :icon="'ti ti-package'">Shipments</x-admin-sidebar-nav-link>
+            <x-admin.sidebar-nav-link href="{{ route('admin.shipment.index') }}" :active="request()->routeIs('admin.shipment.*')"
+                :icon="'ti ti-package'">Shipments</x-admin.sidebar-nav-link>
         </ul>
     </div>
 </div>

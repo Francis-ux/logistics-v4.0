@@ -8,7 +8,7 @@
             </div>
 
             <div class="text-end">
-                <x-admin-breadcrumbs :breadcrumbs="$breadcrumbs" />
+                <x-admin.breadcrumbs :breadcrumbs="$breadcrumbs" />
             </div>
         </div>
 
@@ -24,86 +24,72 @@
                             <div class="row">
                                 {{-- Sender Details --}}
                                 <h5 class="col-12 text-primary mt-3">Sender Details</h5>
-                                <x-admin-input-field name="sender_name" label="Sender Name" />
-                                <x-admin-input-field name="sender_address" label="Sender Address" />
-                                <x-admin-input-field name="sender_phone" label="Sender Phone" type="tel" />
-                                <x-admin-input-field name="sender_email" label="Sender Email" type="email" />
+                                <x-admin.input-field name="sender_name" label="Sender Name" />
+                                <x-admin.input-field name="sender_address" label="Sender Address" />
+                                <x-admin.input-field name="sender_phone" label="Sender Phone" type="tel" />
+                                <x-admin.input-field name="sender_email" label="Sender Email" type="email" />
 
                                 {{-- Client Details --}}
                                 <h5 class="col-12 text-primary mt-3">Client Details</h5>
-                                <x-admin-input-field name="client_name" label="Client Name" />
-                                <x-admin-input-field name="client_address" label="Client Address" />
-                                <x-admin-input-field name="client_phone" label="Client Phone" type="tel" />
-                                <x-admin-input-field name="client_email" label="Client Email" type="email" />
+                                <x-admin.input-field name="client_name" label="Client Name" />
+                                <x-admin.input-field name="client_address" label="Client Address" />
+                                <x-admin.input-field name="client_phone" label="Client Phone" type="tel" />
+                                <x-admin.input-field name="client_email" label="Client Email" type="email" />
 
                                 {{-- Shipment Info --}}
                                 <h5 class="col-12 text-primary mt-3">Shipment Information</h5>
-                                <x-admin-input-field name="shipped_from" label="Shipped From" type="select"
+                                <x-admin.input-field name="shipped_from" label="Shipped From" type="select"
                                     :options="config('setting.nationality')" />
-                                <x-admin-input-field name="shipped_to" label="Shipped To" type="select"
+                                <x-admin.input-field name="shipped_to" label="Shipped To" type="select"
                                     :options="config('setting.nationality')" />
-                                <x-admin-input-field name="departure_date" label="Departure Date" type="date" />
-                                <x-admin-input-field name="arrival_date" label="Arrival Date" type="date" />
-                                <x-admin-input-field name="departure_time" label="Departure Time" type="time" />
-                                <x-admin-input-field name="arrival_time" label="Arrival Time" type="time" />
+                                <x-admin.input-field name="departure_date" label="Departure Date" type="date" />
+                                <x-admin.input-field name="arrival_date" label="Arrival Date" type="date" />
+                                <x-admin.input-field name="departure_time" label="Departure Time" type="time" />
+                                <x-admin.input-field name="arrival_time" label="Arrival Time" type="time" />
 
                                 {{-- Package Dimensions --}}
                                 <h5 class="col-12 text-primary mt-3">Package Details</h5>
-                                <x-admin-input-field name="weight" label="Weight (kg)" type="number" step="0.01"
+                                <x-admin.input-field name="weight" label="Weight (kg)" type="number" step="0.01"
                                     min="0" />
-                                <x-admin-input-field name="quantity" label="Quantity" type="number" min="1" />
-                                <x-admin-input-field name="length" label="Length (cm)" type="number" step="0.01"
+                                <x-admin.input-field name="quantity" label="Quantity" type="number" min="1" />
+                                <x-admin.input-field name="length" label="Length (cm)" type="number" step="0.01"
                                     min="0" />
-                                <x-admin-input-field name="width" label="Width (cm)" type="number" step="0.01"
+                                <x-admin.input-field name="width" label="Width (cm)" type="number" step="0.01"
                                     min="0" />
-                                <x-admin-input-field name="height" label="Height (cm)" type="number" step="0.01"
+                                <x-admin.input-field name="height" label="Height (cm)" type="number" step="0.01"
                                     min="0" />
 
                                 {{-- Description & Comment --}}
-                                <x-admin-input-field name="description" label="Description" type="textarea" />
-                                <x-admin-input-field name="comment" label="Comment" type="textarea" />
+                                <x-admin.input-field name="description" label="Description" type="textarea" />
+                                <x-admin.input-field name="comment" label="Comment" type="textarea" />
 
                                 {{-- Payment & Pricing --}}
                                 <h5 class="col-12 text-primary mt-3">Payment & Pricing</h5>
-                                <x-admin-input-field name="amount" label="Amount" type="number" step="0.01"
+                                <x-admin.input-field name="amount" label="Amount" type="number" step="0.01"
                                     min="0" />
-                                <div class="col-md-6 mb-3">
-                                    <label for="currency" class="form-label">Currency</label>
-                                    <select id="currency" name="currency"
-                                        class="form-select @error('currency') is-invalid @enderror">
-                                        <option value="">-- Select Currency --</option>
-                                        @foreach (config('setting.currency') as $key => $currency)
-                                            <option
-                                                value="{{ $currency['name'] }}-{{ $currency['code'] }}-{{ $currency['symbol'] }}"
-                                                {{ old('currency') == $currency['name'] . '-' . $currency['code'] . '-' . $currency['symbol'] ? 'selected' : '' }}>
-                                                {{ $currency['name'] }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('currency')
-                                        <span class="invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <x-admin-input-field name="payment_mode" label="Payment Mode" type="select"
+                                <x-admin.input-field name="currency" label="Currency" type="select3Dimensional"
+                                    :options="config('setting.currency')" />
+                                <x-admin.input-field name="payment_mode" label="Payment Mode" type="select"
                                     :options="['Cash', 'Cheque', 'BACS', 'Online Banking Transfer']" />
 
                                 {{-- Shipment Type --}}
-                                <x-admin-input-field name="type" label="Shipment Type" type="select"
+                                <x-admin.input-field name="type" label="Shipment Type" type="select"
                                     :options="['Air Freight', 'International Shipping', 'Truck Load', 'Van Move']" />
-                                <x-admin-input-field name="mode" label="Shipment Mode" type="select"
+                                <x-admin.input-field name="mode" label="Shipment Mode" type="select"
                                     :options="['Sea Transport', 'Land Shipping', 'Air Freight']" />
-                                <x-admin-input-field name="product" label="Product" />
-                                <x-admin-input-field name="total_freight" label="Total Freight" type="number"
+                                <x-admin.input-field name="product" label="Product" />
+                                <x-admin.input-field name="total_freight" label="Total Freight" type="number"
                                     step="0.01" min="0" />
 
                                 {{-- Carrier Info --}}
                                 <h5 class="col-12 text-primary mt-3">Carrier Information</h5>
-                                <x-admin-input-field name="carrier_reference_no" label="Carrier Reference No." />
-                                <x-admin-input-field name="carrier" label="Carrier" type="select" :options="['DHL', 'USPS', 'FedEx', config('app.name')]" />
+                                <x-admin.input-field name="carrier_reference_no" label="Carrier Reference No." />
+                                <x-admin.input-field name="carrier" label="Carrier" type="select" :options="['DHL', 'USPS', 'FedEx', config('app.name')]" />
 
                                 {{-- Status & Tracking --}}
                                 <h5 class="col-12 text-primary mt-3">Tracking</h5>
-                                <x-admin-input-field name="status" label="Status" style="display: none !important"
-                                    type="select" :options="[
+                                <x-admin.input-field name="shipment_status" label="Status" type="select"
+                                    :options="[
                                         'Picked Up',
                                         'On Hold',
                                         'Out For Delivery',
@@ -114,14 +100,15 @@
                                         'Returned',
                                         'Arrived',
                                     ]" />
-                                <x-admin-input-field name="current_location" label="Current Location" :value="old('shipped_from')" />
+                                <x-admin.input-field name="current_location" label="Current Location"
+                                    value="{{ old('shipped_from') }}" />
 
                                 {{-- Image Upload --}}
-                                <x-admin-input-field name="image" label="Shipment Image" type="file" />
+                                <x-admin.input-field name="image" label="Shipment Image" type="file" />
 
                                 {{-- Submit --}}
                                 <div class="col-12 mt-4">
-                                    <x-admin-form-submit-button>Create Shipment</x-admin-form-submit-button>
+                                    <x-admin.form-submit-button>Create Shipment</x-admin.form-submit-button>
                                 </div>
                             </div>
                         </form>

@@ -8,7 +8,7 @@
             </div>
 
             <div class="text-end">
-                <x-admin-breadcrumbs :breadcrumbs="$breadcrumbs" />
+                <x-admin.breadcrumbs :breadcrumbs="$breadcrumbs" />
             </div>
         </div>
 
@@ -159,10 +159,10 @@
                                                     class="{{ $shipmentLocation->status->badge() }}">{{ $shipmentLocation->status->label() }}</span>
                                             </td>
                                             <td>
-                                                <x-admin-method-buttons
+                                                <x-admin.method-buttons
                                                     action="{{ route('admin.shipment.location.destroy', $shipmentLocation->uuid) }}"
-                                                    :class="'btn btn-danger m-1'"> <i class="ti ti-trash"></i>
-                                                    Delete</x-admin-method-buttons>
+                                                    class="btn btn-danger m-1"> <i class="ti ti-trash"></i>
+                                                    Delete</x-admin.method-buttons>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -172,22 +172,22 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <x-admin-links href="{{ route('admin.shipment.index') }}" :class="'btn btn-info m-1'"> <i
-                                class="ti ti-arrow-left"></i> Back</x-admin-links>
+                        <x-admin.links href="{{ route('admin.shipment.index') }}" class="btn btn-info m-1"> <i
+                                class="ti ti-arrow-left"></i> Back</x-admin.links>
 
-                        <x-admin-links href="{{ route('admin.shipment.edit', $shipment->uuid) }}" :class="'btn btn-primary m-1'"> <i
-                                class="ti ti-edit"></i> Edit</x-admin-links>
+                        <x-admin.links href="{{ route('admin.shipment.edit', $shipment->uuid) }}" class="btn btn-primary m-1"> <i
+                                class="ti ti-edit"></i> Edit</x-admin.links>
 
-                        <x-admin-links href="#" :class="'btn btn-secondary m-1'"> <i class="ti ti-location-pin"></i>
-                            Tracking</x-admin-links>
+                        <x-admin.links href="#" class="btn btn-secondary m-1"> <i class="ti ti-location-pin"></i>
+                            Tracking</x-admin.links>
 
-                        <x-admin-links href="{{ route('admin.shipment.download', $shipment->uuid) }}" :class="'btn btn-warning m-1'"> <i
+                        <x-admin.links href="{{ route('admin.shipment.download', $shipment->uuid) }}" class="btn btn-warning m-1"> <i
                                 class="ti ti-printer"></i>
-                            Download</x-admin-links>
+                            Download</x-admin.links>
 
-                        <x-admin-method-buttons action="{{ route('admin.shipment.destroy', $shipment->uuid) }}"
-                            :class="'btn btn-danger m-1'"> <i class="ti ti-trash"></i>
-                            Delete</x-admin-method-buttons>
+                        <x-admin.method-buttons action="{{ route('admin.shipment.destroy', $shipment->uuid) }}"
+                            class="btn btn-danger m-1"> <i class="ti ti-trash"></i>
+                            Delete</x-admin.method-buttons>
                     </div>
                 </div>
             </div>

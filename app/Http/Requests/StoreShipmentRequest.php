@@ -69,7 +69,7 @@ class StoreShipmentRequest extends FormRequest
             'mode'               => ['required'],
 
             // Status & tracking
-            'status'             => ['required', 'in:Picked Up,On Hold,Out For Delivery,In Transit,En Route,Cancelled,Delivered,Returned,Arrived'],
+            'shipment_status'    => ['required', 'in:Picked Up,On Hold,Out For Delivery,In Transit,En Route,Cancelled,Delivered,Returned,Arrived'],
             'current_location'   => ['nullable', 'string', 'max:255'],
 
             // File upload

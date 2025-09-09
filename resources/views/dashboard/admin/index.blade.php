@@ -8,7 +8,7 @@
             </div>
 
             <div class="text-end">
-                <x-admin-breadcrumbs :breadcrumbs="$breadcrumbs" />
+                <x-admin.breadcrumbs :breadcrumbs="$breadcrumbs" />
             </div>
         </div>
 
@@ -17,9 +17,12 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title mb-0">Manage and Track All Shipments</h4>
+                        <div class="text-end">
+                            <a href="{{ route('admin.shipment.create') }}" class="btn btn-primary">Create Shipment</a>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <x-admin-shipments :shipments="$shipments" />
+                        <x-admin.shipments :shipments="$shipments" />
                     </div><!-- end card-body -->
                 </div><!-- end card -->
             </div>
