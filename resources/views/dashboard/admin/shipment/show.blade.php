@@ -121,6 +121,11 @@
                             <dt class="col-sm-4">Total Freight:</dt>
                             <dd class="col-sm-8">{{ $shipment->total_freight }}</dd>
 
+                            @if ($shipment->image)
+                                <dt class="col-sm-4">Image:</dt>
+                                <dd class="col-sm-8"><img src="{{ asset($shipment->image) }}" class="img-thumbnail"></dd>
+                            @endif
+
                         </dl>
                     </div><!-- end card-body -->
                 </div><!-- end card -->
@@ -175,14 +180,14 @@
                         <x-admin.links href="{{ route('admin.shipment.index') }}" class="btn btn-info m-1"> <i
                                 class="ti ti-arrow-left"></i> Back</x-admin.links>
 
-                        <x-admin.links href="{{ route('admin.shipment.edit', $shipment->uuid) }}" class="btn btn-primary m-1"> <i
-                                class="ti ti-edit"></i> Edit</x-admin.links>
+                        <x-admin.links href="{{ route('admin.shipment.edit', $shipment->uuid) }}"
+                            class="btn btn-primary m-1"> <i class="ti ti-edit"></i> Edit</x-admin.links>
 
                         <x-admin.links href="#" class="btn btn-secondary m-1"> <i class="ti ti-location-pin"></i>
                             Tracking</x-admin.links>
 
-                        <x-admin.links href="{{ route('admin.shipment.download', $shipment->uuid) }}" class="btn btn-warning m-1"> <i
-                                class="ti ti-printer"></i>
+                        <x-admin.links href="{{ route('admin.shipment.download', $shipment->uuid) }}"
+                            class="btn btn-warning m-1"> <i class="ti ti-printer"></i>
                             Download</x-admin.links>
 
                         <x-admin.method-buttons action="{{ route('admin.shipment.destroy', $shipment->uuid) }}"
