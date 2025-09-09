@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreShipmentRequest;
+use App\Http\Requests\UpdateShipmentRequest;
 use App\Models\ShipmentLocation;
 use App\Trait\FileUpload;
 use Illuminate\Support\Facades\Log;
@@ -119,17 +120,49 @@ class ShipmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $uuid)
     {
-        //
+        $breadcrumbs = [
+            ['label' => config('app.name'), 'url' => '/'],
+            ['label' => 'Shipments', 'url' => route('admin.shipment.index')],
+            ['label' => 'Edit Shipment', 'url' => route('admin.shipment.edit', $uuid), 'active' => true]
+        ];
+
+        $shipment = Shipment::where('uuid', $uuid)->firstOrFail();
+
+        $data = [
+            'title' => 'Edit Shipment',
+            'breadcrumbs' => $breadcrumbs,
+            'shipment' => $shipment
+        ];
+
+        return view('dashboard.admin.shipment.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateShipmentRequest $request, string $uuid)
     {
-        //
+        $validated = $request->validated();
+
+        try {
+            DB::beginTransaction();
+
+            $shipment = Shipment::where('uuid', $uuid)->firstOrFail();
+
+            $validated['image'] = $this->imageInterventionUpdateFile($request, 'image', '/uploads/shipment/image/', 550, 550, $shipment->image);
+
+            $shipment->update($validated);
+
+            DB::commit();
+
+            return redirect()->route('admin.shipment.show', ['shipment' => $shipment->uuid])->with('success', config('messages.success'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', config('messages.error'));
+        }
     }
 
     /**
