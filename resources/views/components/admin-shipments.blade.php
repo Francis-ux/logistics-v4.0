@@ -30,7 +30,7 @@
                      </td>
                      <td>
                          <x-admin-links href="{{ route('admin.shipment.show', $shipment->uuid) }}" :class="'btn btn-primary m-1'"><i
-                                 class="ti ti-package"></i> Shipment Details</x-admin-links>
+                                 class="ti ti-package"></i> Details</x-admin-links>
 
                          <x-admin-links href="{{ route('admin.shipment.download', $shipment->uuid) }}"
                              :class="'btn btn-warning m-1'"><i class="ti ti-printer"></i>

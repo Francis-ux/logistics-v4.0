@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Shipment;
+use App\Enum\ShipmentStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreShipmentRequest;
+use App\Trait\FileUpload;
+use Illuminate\Support\Facades\Log;
 
 class ShipmentController extends Controller
 {
+    use FileUpload;
     /**
      * Display a listing of the resource.
      */
@@ -34,15 +40,44 @@ class ShipmentController extends Controller
      */
     public function create()
     {
-        //
+        $breadcrumbs = [
+            ['label' => config('app.name'), 'url' => '/'],
+            ['label' => 'Shipments', 'url' => route('admin.shipment.index')],
+            ['label' => 'Create Shipment', 'url' => route('admin.shipment.create'), 'active' => true]
+        ];
+
+        $data = [
+            'title' => 'Create Shipment',
+            'breadcrumbs' => $breadcrumbs,
+        ];
+
+        return view('dashboard.admin.shipment.create', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreShipmentRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        try {
+            DB::beginTransaction();
+
+            $validated['uuid'] = str()->uuid();
+            $validated['image'] = $this->imageInterventionUploadFile($request, 'image', '/uploads/shipment/image/', 550, 550);
+            $validated['tracking_code'] = getTrackingNumber(config('app.name'));
+
+            Shipment::create($validated);
+
+            DB::commit();
+
+            return redirect()->route('admin.shipment.index')->with('success', config('messages.success'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', config('messages.error'));
+        }
     }
 
     /**
