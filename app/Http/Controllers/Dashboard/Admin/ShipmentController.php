@@ -168,9 +168,27 @@ class ShipmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $uuid)
     {
-        dd('shipment destroy');
+        try {
+            DB::beginTransaction();
+
+            $shipment = Shipment::where('uuid', $uuid)->firstOrFail();
+
+            $oldImage = $shipment->image;
+
+            $shipment->delete();
+
+            DB::commit();
+
+            $this->deleteFile($oldImage);
+
+            return redirect()->route('admin.shipment.index')->with('success', config('messages.success'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', config('messages.error'));
+        }
     }
 
     public function download(string $id)
