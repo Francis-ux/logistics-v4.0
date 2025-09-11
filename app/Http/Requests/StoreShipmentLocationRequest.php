@@ -11,7 +11,7 @@ class StoreShipmentLocationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class StoreShipmentLocationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'location' => ['required', 'string', 'max:255'],
+            'google_map_location' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string', 'max:1000'],
+            'date' => ['required', 'date'],
+            'time' => ['required', 'date_format:H:i'],
+            'shipment_status' => ['required', 'string'],
+            'notification' => ['required', 'string'],
         ];
     }
 }

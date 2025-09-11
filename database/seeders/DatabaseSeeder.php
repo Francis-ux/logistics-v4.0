@@ -22,6 +22,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
         ]);
 
-        Shipment::factory(10)->has(ShipmentLocation::factory()->count(5))->create();
+        Shipment::factory(1)->has(ShipmentLocation::factory()->count(5))->create();
     }
 }

@@ -21,6 +21,6 @@ Route::prefix('admin')->group(function () {
     Route::delete('/shipment/{shipment}/destroy', [ShipmentController::class, 'destroy'])->name('admin.shipment.destroy');
     Route::get('/shipment/{shipment}/download', [ShipmentController::class, 'download'])->name('admin.shipment.download');
 
-    Route::put('/shipment/location/{shipmentLocation}/update', [ShipmentLocationController::class, 'update'])->name('admin.shipment.location.update');
+    Route::put('/shipment/location/{shipment}/update', [ShipmentLocationController::class, 'update'])->name('admin.shipment.location.update');
     Route::delete('/shipment/location/{shipmentLocation}/destroy', [ShipmentLocationController::class, 'destroy'])->name('admin.shipment.location.destroy');
 });

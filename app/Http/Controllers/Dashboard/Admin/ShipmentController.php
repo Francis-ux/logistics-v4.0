@@ -87,7 +87,7 @@ class ShipmentController extends Controller
 
             DB::commit();
 
-            return redirect()->route('admin.shipment.index')->with('success', config('messages.success'));
+            return redirect()->route('admin.shipment.show', ['shipment' => $shipment->uuid])->with('success', config('messages.success'));
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error($e->getMessage());

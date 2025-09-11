@@ -17,6 +17,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title mb-0">Overview of Package and Delivery Details</h4>
+                        <x-admin.card-header-button href="{{ route('admin.shipment.create') }}">Create
+                            Shipment</x-admin.card-header-button>
                     </div>
                     <div class="card-body">
                         <dl class="row">
@@ -40,7 +42,10 @@
                             </dd>
 
                             <dt class="col-sm-4">Current Location:</dt>
-                            <dd class="col-sm-8">{{ $shipment->current_location }}</dd>
+                            <dd class="col-sm-8">
+                                {{ $shipment->current_location }}
+                                <x-admin.shipment-map :shipment="$shipment" />
+                            </dd>
 
                             <dt class="col-sm-4">Last Update:</dt>
                             <dd class="col-sm-8">{{ formatDateTime($shipment->last_update) }}</dd>
@@ -150,10 +155,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($shipment->shipmentLocation as $index => $shipmentLocation)
+                                    @foreach ($shipment->shipmentLocation()->latest()->get() as $index => $shipmentLocation)
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
-                                            <td>{{ $shipmentLocation->location }}</td>
+                                            <td>
+                                                @if ($shipment->current_location == $shipmentLocation->location && $shipment->status->value == $shipmentLocation->status->value)
+                                                    Current Location: <span
+                                                        class="text-success"><b>{{ $shipmentLocation->location }}</b></span>
+                                                @else
+                                                    Previous Location: <span
+                                                        class="text-danger"><b>{{ $shipmentLocation->location }}</b></span>
+                                                @endif
+                                            </td>
                                             <td>{{ $shipmentLocation->google_map_location }}</td>
                                             <td>{{ $shipment->description }}</td>
                                             <td>{{ formatDate($shipmentLocation->date) }}
@@ -166,8 +179,7 @@
                                             <td>
                                                 <x-admin.method-buttons
                                                     action="{{ route('admin.shipment.location.destroy', $shipmentLocation->uuid) }}"
-                                                    class="btn btn-danger m-1"> <i class="ti ti-trash"></i>
-                                                    Delete</x-admin.method-buttons>
+                                                    class="btn btn-danger m-1">Delete</x-admin.method-buttons>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -177,22 +189,57 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <x-admin.links href="{{ route('admin.shipment.index') }}" class="btn btn-info m-1"> <i
-                                class="ti ti-arrow-left"></i> Back</x-admin.links>
-
                         <x-admin.links href="{{ route('admin.shipment.edit', $shipment->uuid) }}"
-                            class="btn btn-primary m-1"> <i class="ti ti-edit"></i> Edit</x-admin.links>
+                            class="btn btn-primary m-1">Edit</x-admin.links>
 
-                        <x-admin.links href="#" class="btn btn-secondary m-1"> <i class="ti ti-location-pin"></i>
-                            Tracking</x-admin.links>
+                        <x-admin.links href="#" class="btn btn-secondary m-1">Track Shipment</x-admin.links>
 
                         <x-admin.links href="{{ route('admin.shipment.download', $shipment->uuid) }}"
-                            class="btn btn-warning m-1"> <i class="ti ti-printer"></i>
-                            Download</x-admin.links>
+                            class="btn btn-warning m-1">Download</x-admin.links>
 
                         <x-admin.method-buttons action="{{ route('admin.shipment.destroy', $shipment->uuid) }}"
-                            class="btn btn-danger m-1"> <i class="ti ti-trash"></i>
-                            Delete</x-admin.method-buttons>
+                            class="btn btn-danger m-1">Delete</x-admin.method-buttons>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">Update Shipment Locations</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('admin.shipment.location.update', $shipment->uuid) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="row">
+                                <x-admin.input-field name="shipment_status" label="Status" type="select"
+                                    :options="[
+                                        'Picked Up',
+                                        'On Hold',
+                                        'Out For Delivery',
+                                        'In Transit',
+                                        'En Route',
+                                        'Cancelled',
+                                        'Delivered',
+                                        'Returned',
+                                        'Arrived',
+                                    ]" value="{{ $shipment->status }}" />
+                                <x-admin.input-field name="location" label="Location"
+                                    value="{{ $shipment->current_location }}" />
+                                <x-admin.input-field name="google_map_location" label="Google Map Location"
+                                    value="{{ $shipment->current_location }}" />
+                                <x-admin.input-field name="description" label="Description" type="textarea" />
+                                <x-admin.input-field name="date" label="Date" type="date" />
+                                <x-admin.input-field name="time" label="Time" type="time" />
+                                <x-admin.input-field name="notification" label="Notification" type="select"
+                                    :options="['None', 'Email']" />
+
+                                <x-admin.form-submit-button>Update</x-admin.form-submit-button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <x-admin.links href="{{ route('admin.shipment.index') }}"
+                            class="btn btn-info m-1">Back</x-admin.links>
                     </div>
                 </div>
             </div>

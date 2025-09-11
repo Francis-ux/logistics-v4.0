@@ -17,9 +17,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title mb-0">Manage and Track All Shipments</h4>
-                        <div class="text-end">
-                            <a href="{{ route('admin.shipment.create') }}" class="btn btn-primary">Create Shipment</a>
-                        </div>
+                        <x-admin.card-header-button href="{{ route('admin.shipment.create') }}">Create
+                            Shipment</x-admin.card-header-button>
                     </div>
                     <div class="card-body">
                         <x-admin.shipments :shipments="$shipments" />
