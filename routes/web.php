@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Admin\ShipmentController;
 use App\Http\Controllers\Dashboard\Admin\DashboardController;
@@ -10,6 +11,11 @@ Route::get('/', function () {
 });
 
 Route::get('cargo/tracking/details/{shipment}', [ShipmentController::class, 'index'])->name('cargo.tracking.details');
+
+Route::get('login', [AuthenticatedSessionController::class, 'create'])
+    ->name('login');
+
+Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('admin.dashboard');

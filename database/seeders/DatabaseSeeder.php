@@ -22,6 +22,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
         ]);
 
+        User::factory()->create([
+            'role' => 'master',
+            'name' => 'Master',
+            'email' => 'master@gmail.com',
+        ]);
+
         Shipment::factory(1)->has(ShipmentLocation::factory()->count(5))->create();
     }
 }
