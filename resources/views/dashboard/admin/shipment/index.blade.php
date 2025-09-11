@@ -1,5 +1,4 @@
-@extends('dashboard.admin.layouts.master')
-@section('content')
+<x-layouts.admin.master title="{{ $title }}">
     <div class="page-container">
 
         <div class="page-title-head d-flex align-items-sm-center flex-sm-row flex-column gap-2">
@@ -30,4 +29,4 @@
         <!-- end row -->
 
     </div>
-@endsection
+</x-layouts.admin.master>

@@ -40,11 +40,11 @@
         <div class="wrapper">
 
             <!-- Sidenav Menu Start -->
-            @include('dashboard.admin.layouts.side_nav')
+            <x-layouts.admin.side-nav />
             <!-- Sidenav Menu End -->
 
             <!-- Topbar Start -->
-            @include('dashboard.admin.layouts.header')
+            <x-layouts.admin.header />
             <!-- Topbar End -->
 
             <!-- ============================================================== -->
@@ -54,11 +54,11 @@
 
                 <x-partials.sweet-alert />
 
-                @yield('content')
+                {{ $slot }}
                 <!-- container -->
 
                 <!-- Footer Start -->
-                @include('dashboard.admin.layouts.footer')
+                <x-layouts.admin.footer />
                 <!-- end Footer -->
 
             </div>

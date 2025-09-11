@@ -1,5 +1,4 @@
-@extends('dashboard.admin.layouts.master')
-@section('content')
+<x-layouts.admin.master title="{{ $title }}">
     <div class="page-container">
 
         <div class="page-title-head d-flex align-items-sm-center flex-sm-row flex-column gap-2">
@@ -53,7 +52,8 @@
                             <dt class="col-sm-4">Departure:</dt>
                             <dd class="col-sm-8">
                                 {{ $shipment->shipped_from }} <br>
-                                {{ formatDate($shipment->departure_date) }} {{ formatTime($shipment->departure_time) }}
+                                {{ formatDate($shipment->departure_date) }}
+                                {{ formatTime($shipment->departure_time) }}
                             </dd>
 
                             <dt class="col-sm-4">Destination:</dt>
@@ -128,7 +128,8 @@
 
                             @if ($shipment->image)
                                 <dt class="col-sm-4">Image:</dt>
-                                <dd class="col-sm-8"><img src="{{ asset($shipment->image) }}" class="img-thumbnail"></dd>
+                                <dd class="col-sm-8"><img src="{{ asset($shipment->image) }}" class="img-thumbnail">
+                                </dd>
                             @endif
 
                         </dl>
@@ -204,18 +205,18 @@
                             @csrf
                             @method('PUT')
                             <div class="row">
-                                <x-admin.input-field name="shipment_status" label="Status" type="select" :options="[
-                                    'Picked Up',
-                                    'On Hold',
-                                    'Out For Delivery',
-                                    'In Transit',
-                                    'En Route',
-                                    'Cancelled',
-                                    'Delivered',
-                                    'Returned',
-                                    'Arrived',
-                                ]"
-                                    value="{{ $shipment->status }}" />
+                                <x-admin.input-field name="shipment_status" label="Status" type="select"
+                                    :options="[
+                                        'Picked Up',
+                                        'On Hold',
+                                        'Out For Delivery',
+                                        'In Transit',
+                                        'En Route',
+                                        'Cancelled',
+                                        'Delivered',
+                                        'Returned',
+                                        'Arrived',
+                                    ]" value="{{ $shipment->status }}" />
                                 <x-admin.input-field name="location" label="Location"
                                     value="{{ $shipment->current_location }}" />
                                 <x-admin.input-field name="google_map_location" label="Google Map Location"
@@ -242,4 +243,4 @@
             document.getElementById('google_map_location').value = this.value;
         });
     </script>
-@endsection
+</x-layouts.admin.master>

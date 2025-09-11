@@ -1,5 +1,4 @@
-@extends('dashboard.admin.layouts.master')
-@section('content')
+<x-layouts.admin.master title="{{ $title }}">
     <div class="page-container">
 
         <div class="page-title-head d-flex align-items-sm-center flex-sm-row flex-column gap-2">
@@ -84,7 +83,8 @@
                                 {{-- Carrier Info --}}
                                 <h5 class="col-12 text-primary mt-3">Carrier Information</h5>
                                 <x-admin.input-field name="carrier_reference_no" label="Carrier Reference No." />
-                                <x-admin.input-field name="carrier" label="Carrier" type="select" :options="['DHL', 'USPS', 'FedEx', config('app.name')]" />
+                                <x-admin.input-field name="carrier" label="Carrier" type="select"
+                                    :options="['DHL', 'USPS', 'FedEx', config('app.name')]" />
 
                                 {{-- Status & Tracking --}}
                                 <h5 class="col-12 text-primary mt-3">Tracking</h5>
@@ -121,4 +121,4 @@
         <!-- end row -->
 
     </div>
-@endsection
+</x-layouts.admin.master>

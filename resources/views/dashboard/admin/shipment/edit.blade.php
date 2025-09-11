@@ -1,5 +1,4 @@
-@extends('dashboard.admin.layouts.master')
-@section('content')
+<x-layouts.admin.master title="{{ $title }}">
     <div class="page-container">
 
         <div class="page-title-head d-flex align-items-sm-center flex-sm-row flex-column gap-2">
@@ -52,8 +51,8 @@
                                 <h5 class="col-12 text-primary mt-3">Shipment Information</h5>
                                 <x-admin.input-field name="shipped_from" label="Shipped From" type="select"
                                     :options="config('setting.nationality')" value="{{ $shipment->shipped_from }}" />
-                                <x-admin.input-field name="shipped_to" label="Shipped To" type="select" :options="config('setting.nationality')"
-                                    value="{{ $shipment->shipped_to }}" />
+                                <x-admin.input-field name="shipped_to" label="Shipped To" type="select"
+                                    :options="config('setting.nationality')" value="{{ $shipment->shipped_to }}" />
                                 <x-admin.input-field name="departure_date" label="Departure Date" type="date"
                                     :value="$shipment->departure_date->format('Y-m-d')" />
                                 <x-admin.input-field name="arrival_date" label="Arrival Date" type="date"
@@ -96,7 +95,8 @@
                                     :options="['Air Freight', 'International Shipping', 'Truck Load', 'Van Move']" value="{{ $shipment->type }}" />
                                 <x-admin.input-field name="mode" label="Shipment Mode" type="select"
                                     :options="['Sea Transport', 'Land Shipping', 'Air Freight']" value="{{ $shipment->mode }}" />
-                                <x-admin.input-field name="product" label="Product" value="{{ $shipment->product }}" />
+                                <x-admin.input-field name="product" label="Product"
+                                    value="{{ $shipment->product }}" />
                                 <x-admin.input-field name="total_freight" label="Total Freight" type="number"
                                     step="0.01" min="0" value="{{ $shipment->total_freight }}" />
 
@@ -128,4 +128,4 @@
         <!-- end row -->
 
     </div>
-@endsection
+</x-layouts.admin.master>
