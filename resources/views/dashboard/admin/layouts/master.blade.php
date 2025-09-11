@@ -27,7 +27,7 @@
         <!-- Icons css -->
         <link href="/dashboard/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 
-        @include('partials.google_translator')
+        <x-partials.google-translator />
 
         <script src="/assets/js/sweet_alert2.js"></script>
 
@@ -52,7 +52,7 @@
             <!-- ============================================================== -->
             <div class="page-content">
 
-                @include('partials.sweet_alert')
+                <x-partials.sweet-alert />
 
                 @yield('content')
                 <!-- container -->
@@ -97,7 +97,7 @@
             });
         </script>
 
-        @include('partials.live_chat')
+        <x-partials.live-chat />
     </body>
 
 </html>
