@@ -16,7 +16,9 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title mb-0">Edit <u>{{ $shipment->tracking_code }}</u> Shipment</h4>
+                        <h4 class="card-title mb-0">Edit Shipment: {{ $shipment->tracking_code }}</h4>
+                        <x-admin.card-header-button href="{{ route('admin.shipment.create') }}">Create
+                            Shipment</x-admin.card-header-button>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('admin.shipment.update', $shipment->uuid) }}" method="POST"
@@ -109,13 +111,16 @@
                                 <x-admin.input-field name="image" label="Shipment Image" type="file" />
 
                                 {{-- Submit --}}
-                                <div class="col-12 mt-4">
-                                    <x-admin.form-submit-button>Edit Shipment</x-admin.form-submit-button>
+                                <div class="col-12">
+                                    <x-admin.form-submit-button>Update Shipment</x-admin.form-submit-button>
                                 </div>
                             </div>
                         </form>
 
                     </div><!-- end card-body -->
+                    <div class="card-footer">
+                        <x-admin.shipment-action-btn :shipment="$shipment" />
+                    </div>
                 </div><!-- end card -->
             </div>
             <!-- end col -->

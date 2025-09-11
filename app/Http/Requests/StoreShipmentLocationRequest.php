@@ -26,7 +26,7 @@ class StoreShipmentLocationRequest extends FormRequest
             'google_map_location' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:1000'],
             'date' => ['required', 'date'],
-            'time' => ['required', 'date_format:H:i'],
+            'time' => ['required'],
             'shipment_status' => ['required', 'string'],
             'notification' => ['required', 'string'],
         ];

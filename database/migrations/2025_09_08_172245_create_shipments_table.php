@@ -38,8 +38,8 @@ return new class extends Migration
             $table->string('width')->nullable();
             $table->string('height')->nullable();
 
-            $table->string('departure_time')->nullable();
-            $table->string('arrival_time')->nullable();
+            $table->time('departure_time')->nullable();
+            $table->time('arrival_time')->nullable();
 
             $table->longText('description')->nullable();
             $table->string('comment')->nullable();

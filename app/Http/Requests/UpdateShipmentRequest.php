@@ -41,8 +41,8 @@ class UpdateShipmentRequest extends FormRequest
             // Dates & times
             'departure_date'     => ['required', 'date'],
             'arrival_date'       => ['required', 'date', 'after_or_equal:departure_date'],
-            'departure_time'     => ['required', 'date_format:H:i'],
-            'arrival_time'       => ['required', 'date_format:H:i'],
+            'departure_time'     => ['required'],
+            'arrival_time'       => ['required'],
 
             // Dimensions & quantity
             'weight'             => ['required', 'numeric', 'min:0.1'],

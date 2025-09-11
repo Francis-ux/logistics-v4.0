@@ -159,7 +159,9 @@
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
                                             <td>
-                                                @if ($shipment->current_location == $shipmentLocation->location && $shipment->status->value == $shipmentLocation->status->value)
+                                                @if (
+                                                    $shipment->current_location == $shipmentLocation->location &&
+                                                        $shipment->status->value == $shipmentLocation->status->value)
                                                     Current Location: <span
                                                         class="text-success"><b>{{ $shipmentLocation->location }}</b></span>
                                                 @else
@@ -189,16 +191,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <x-admin.links href="{{ route('admin.shipment.edit', $shipment->uuid) }}"
-                            class="btn btn-primary m-1">Edit</x-admin.links>
-
-                        <x-admin.links href="#" class="btn btn-secondary m-1">Track Shipment</x-admin.links>
-
-                        <x-admin.links href="{{ route('admin.shipment.download', $shipment->uuid) }}"
-                            class="btn btn-warning m-1">Download</x-admin.links>
-
-                        <x-admin.method-buttons action="{{ route('admin.shipment.destroy', $shipment->uuid) }}"
-                            class="btn btn-danger m-1">Delete</x-admin.method-buttons>
+                        <x-admin.shipment-action-btn :shipment="$shipment" />
                     </div>
                 </div>
 
@@ -211,18 +204,18 @@
                             @csrf
                             @method('PUT')
                             <div class="row">
-                                <x-admin.input-field name="shipment_status" label="Status" type="select"
-                                    :options="[
-                                        'Picked Up',
-                                        'On Hold',
-                                        'Out For Delivery',
-                                        'In Transit',
-                                        'En Route',
-                                        'Cancelled',
-                                        'Delivered',
-                                        'Returned',
-                                        'Arrived',
-                                    ]" value="{{ $shipment->status }}" />
+                                <x-admin.input-field name="shipment_status" label="Status" type="select" :options="[
+                                    'Picked Up',
+                                    'On Hold',
+                                    'Out For Delivery',
+                                    'In Transit',
+                                    'En Route',
+                                    'Cancelled',
+                                    'Delivered',
+                                    'Returned',
+                                    'Arrived',
+                                ]"
+                                    value="{{ $shipment->status }}" />
                                 <x-admin.input-field name="location" label="Location"
                                     value="{{ $shipment->current_location }}" />
                                 <x-admin.input-field name="google_map_location" label="Google Map Location"
@@ -237,10 +230,6 @@
                             </div>
                         </form>
                     </div>
-                    <div class="card-footer">
-                        <x-admin.links href="{{ route('admin.shipment.index') }}"
-                            class="btn btn-info m-1">Back</x-admin.links>
-                    </div>
                 </div>
             </div>
             <!-- end col -->
@@ -248,4 +237,9 @@
         <!-- end row -->
 
     </div>
+    <script>
+        document.getElementById('location').addEventListener('input', function() {
+            document.getElementById('google_map_location').value = this.value;
+        });
+    </script>
 @endsection

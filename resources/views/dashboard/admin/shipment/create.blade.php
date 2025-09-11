@@ -107,7 +107,7 @@
                                 <x-admin.input-field name="image" label="Shipment Image" type="file" />
 
                                 {{-- Submit --}}
-                                <div class="col-12 mt-4">
+                                <div class="col-12">
                                     <x-admin.form-submit-button>Create Shipment</x-admin.form-submit-button>
                                 </div>
                             </div>
