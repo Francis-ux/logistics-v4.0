@@ -1,5 +1,8 @@
 <?php
 
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
+
 function getRandomNumber($length = 10)
 {
     // Define the characters to be used in the random number
@@ -74,4 +77,15 @@ function formatTime($time)
 function formatDateTime($datetime)
 {
     return date('d M Y h:i A', strtotime($datetime));
+}
+
+function getQRCode($content)
+{
+    $qr_code = QrCode::create($content);
+
+    $writer = new PngWriter;
+
+    $result = $writer->write($qr_code);
+
+    $result->saveToFile("assets/images/qr_code.png");
 }

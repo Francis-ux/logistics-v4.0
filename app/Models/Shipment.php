@@ -11,6 +11,8 @@ class Shipment extends Model
     /** @use HasFactory<\Database\Factories\ShipmentFactory> */
     use HasFactory;
 
+    // protected $guarded = [];
+
     protected $fillable = [
         'uuid',
         'tracking_code',

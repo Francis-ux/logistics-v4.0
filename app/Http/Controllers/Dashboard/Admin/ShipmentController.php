@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Models\Shipment;
-use App\Enum\ShipmentStatus;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreShipmentRequest;
@@ -12,6 +10,7 @@ use App\Http\Requests\UpdateShipmentRequest;
 use App\Models\ShipmentLocation;
 use App\Trait\FileUpload;
 use Illuminate\Support\Facades\Log;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ShipmentController extends Controller
 {
@@ -100,7 +99,7 @@ class ShipmentController extends Controller
      */
     public function show(string $uuid)
     {
-        $shipment = Shipment::where('uuid', $uuid)->firstOrFail();
+        $shipment = Shipment::with('shipmentLocation')->where('uuid', $uuid)->firstOrFail();
 
         $breadcrumbs = [
             ['label' => config('app.name'), 'url' => '/'],
@@ -191,8 +190,29 @@ class ShipmentController extends Controller
         }
     }
 
-    public function download(string $id)
+    public function download(string $uuid)
     {
-        //
+        try {
+            $shipment = Shipment::with('shipmentLocation')->where('uuid', $uuid)->firstOrFail();
+
+            getQRCode(route('cargo.tracking.details', $shipment->uuid));
+
+            $data = [
+                'shipment' => $shipment,
+            ];
+
+            $name = config('app.name') . '-' . 'Receipt';
+
+            $pdf = Pdf::loadView('pdf.shipment', $data);
+
+            if (config('app.env') == 'production') {
+                return $pdf->download($name);
+            } else {
+                return $pdf->stream($name);
+            }
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', config('messages.error'));
+        }
     }
 }

@@ -9,6 +9,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('cargo/tracking/details/{shipment}', [ShipmentController::class, 'index'])->name('cargo.tracking.details');
+
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('admin.dashboard');
 
