@@ -12,7 +12,8 @@
 
                     <form method="POST" action="{{ route('login') }}" class="text-start mb-3">
                         @csrf
-                        <x-auth.input-field name="email" label="Email" placeholder="Enter your email" />
+                        <x-auth.input-field name="email" label="Email" placeholder="Enter your email"
+                            value="{{ old('email') }}" />
 
                         <x-auth.input-field name="password" label="Password" type="password"
                             placeholder="Enter your password" />

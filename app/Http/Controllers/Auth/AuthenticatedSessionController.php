@@ -29,6 +29,12 @@ class AuthenticatedSessionController extends Controller
 
                     request()->session()->regenerate();
                 }
+
+                if (Auth::user()->role === 'master') {
+                    return redirect()->route('master.dashboard');
+
+                    request()->session()->regenerate();
+                }
             }
 
             return back()->withErrors([
@@ -38,5 +44,20 @@ class AuthenticatedSessionController extends Controller
             Log::error($e->getMessage());
             return redirect()->back()->with('error', config('messages.error'));
         }
+    }
+
+    public function destroy(Request $request)
+    {
+        // 1️⃣ Logs out the authenticated user
+        Auth::logout();
+
+        // 2️⃣ Invalidates the current session to prevent reuse (e.g., session fixation attacks)
+        $request->session()->invalidate();
+
+        // 3️⃣ Regenerates the CSRF token to avoid token reuse
+        $request->session()->regenerateToken();
+
+        // 4️⃣ Redirects the user to the login page
+        return redirect()->route('login')->with('success', 'You have been logged out.');
     }
 }
