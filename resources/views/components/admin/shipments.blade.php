@@ -36,8 +36,8 @@
                          <x-admin.links href="{{ route('admin.shipment.edit', $shipment->uuid) }}"
                              class="btn btn-primary m-1">Edit</x-admin.links>
 
-                         <x-admin.method-buttons action="{{ route('admin.shipment.destroy', $shipment->uuid) }}"
-                             class="btn btn-danger m-1">Delete</x-admin.method-buttons>
+                         <x-admin.delete-button action="{{ route('admin.shipment.destroy', $shipment->uuid) }}"
+                             class="btn btn-danger m-1">Delete</x-admin.delete-button>
                      </td>
                  </tr>
              @endforeach

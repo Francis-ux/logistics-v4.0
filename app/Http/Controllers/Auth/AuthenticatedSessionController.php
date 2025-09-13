@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enum\AdminIsActiveStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
@@ -25,13 +26,20 @@ class AuthenticatedSessionController extends Controller
         try {
             if (Auth::attempt($credentials, $remember)) {
                 if (Auth::user()->role === 'admin') {
-                    return redirect()->route('admin.dashboard');
+                    if (Auth::user()->is_active === AdminIsActiveStatus::INACTIVE) {
+                        Auth::logout();
+                        return back()->withErrors([
+                            'email' => 'Your account is currently inactive and cannot be used to log in. Please contact an administrator to reactivate your account.',
+                        ])->onlyInput('email');
+                    }
+
+                    return redirect()->route('admin.dashboard')->with('success', 'Login successful');
 
                     request()->session()->regenerate();
                 }
 
                 if (Auth::user()->role === 'master') {
-                    return redirect()->route('master.dashboard');
+                    return redirect()->route('master.dashboard')->with('success', 'Login successful');
 
                     request()->session()->regenerate();
                 }

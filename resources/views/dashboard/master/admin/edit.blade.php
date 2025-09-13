@@ -22,13 +22,13 @@
                             @csrf
                             @method('PUT')
                             <div class="row">
-                                <x-master.input-field name="name" label="Name" value="{{ $admin->name }}" />
-                                <x-master.input-field name="email" label="Email" value="{{ $admin->email }}" />
-                                <x-master.input-field name="password" id="new_password" label="Password"
-                                    type="password" />
+                                <x-master.form-input name="name" label="Name" value="{{ $admin->name }}" />
+                                <x-master.form-input name="email" label="Email" value="{{ $admin->email }}" />
+                                <x-master.form-input name="password" id="new_password" label="Password" type="password" />
                                 <div class="col-md-6 mb-3">
                                     <label for="is_active" class="form-label">Is Active</label>
                                     <select name="is_active" id="is_active" class="form-select">
+                                        <option value="">Select</option>
                                         <option value="1" @selected($admin->is_active->value == 1)>Yes
                                         </option>
                                         <option value="0" @selected($admin->is_active->value == 0)>No
@@ -37,7 +37,7 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <x-master.form-submit-button>Update Admin</x-master.form-submit-button>
+                                    <x-master.form-button>Update Admin</x-master.form-button>
                                 </div>
                             </div>
                         </form>

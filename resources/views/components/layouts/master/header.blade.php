@@ -36,8 +36,8 @@
                         <img src="{{ asset('assets/images/avatar.png') }}" width="32"
                             class="rounded-circle me-lg-2 d-flex" alt="user-image">
                         <span class="d-lg-flex flex-column gap-1 d-none">
-                            <h5 class="my-0">{{ config('app.name') }}</h5>
-                            <h6 class="my-0 fw-normal">{{ config('contact.email') }}</h6>
+                            <h5 class="my-0">{{ auth()->user()->name }}</h5>
+                            <h6 class="my-0 fw-normal">{{ auth()->user()->email }}</h6>
                         </span>
                         <i class="ti ti-chevron-down d-none d-lg-block align-middle ms-2"></i>
                     </a>

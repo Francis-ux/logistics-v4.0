@@ -12,10 +12,10 @@
 
                     <form method="POST" action="{{ route('login') }}" class="text-start mb-3">
                         @csrf
-                        <x-auth.input-field name="email" label="Email" placeholder="Enter your email"
-                            value="{{ old('email') }}" />
+                        <x-auth.form-input name="email" label="Email" placeholder="Enter your email"
+                            value="{{ old('email') }}" formText="We'll never share your email with anyone else." />
 
-                        <x-auth.input-field name="password" label="Password" type="password"
+                        <x-auth.form-input name="password" label="Password" type="password"
                             placeholder="Enter your password" />
 
                         <div class="d-flex justify-content-between mb-3">
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="d-grid">
-                            <x-auth.form-submit-button>Login</x-auth.form-submit-button>
+                            <x-auth.form-button>Login</x-auth.form-button>
                         </div>
                     </form>
                     <x-layouts.auth.footer />

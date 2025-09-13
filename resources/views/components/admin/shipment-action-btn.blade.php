@@ -8,5 +8,5 @@
  <x-admin.links href="{{ route('admin.shipment.download', $shipment->uuid) }}"
      class="btn btn-success m-1">Download</x-admin.links>
 
- <x-admin.method-buttons action="{{ route('admin.shipment.destroy', $shipment->uuid) }}"
-     class="btn btn-danger m-1">Delete</x-admin.method-buttons>
+ <x-admin.delete-button action="{{ route('admin.shipment.destroy', $shipment->uuid) }}"
+     class="btn btn-danger m-1">Delete</x-admin.delete-button>

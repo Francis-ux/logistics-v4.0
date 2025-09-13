@@ -137,6 +137,7 @@ namespace App\Models{
 namespace App\Models{
 /**
  * @property int $id
+ * @property string $uuid
  * @property string $role
  * @property string $name
  * @property string $email
@@ -162,6 +163,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUuid($value)
  */
 	class User extends \Eloquent {}
 }

@@ -180,9 +180,9 @@
                                                     class="{{ $shipmentLocation->status->badge() }}">{{ $shipmentLocation->status->label() }}</span>
                                             </td>
                                             <td>
-                                                <x-admin.method-buttons
+                                                <x-admin.delete-button
                                                     action="{{ route('admin.shipment.location.destroy', $shipmentLocation->uuid) }}"
-                                                    class="btn btn-danger m-1">Delete</x-admin.method-buttons>
+                                                    class="btn btn-danger m-1">Delete</x-admin.delete-button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -205,7 +205,7 @@
                             @csrf
                             @method('PUT')
                             <div class="row">
-                                <x-admin.input-field name="shipment_status" label="Status" type="select"
+                                <x-admin.form-select name="shipment_status" label="Status" type="select"
                                     :options="[
                                         'Picked Up',
                                         'On Hold',
@@ -217,17 +217,17 @@
                                         'Returned',
                                         'Arrived',
                                     ]" value="{{ $shipment->status }}" />
-                                <x-admin.input-field name="location" label="Location"
+                                <x-admin.form-input name="location" label="Location"
                                     value="{{ $shipment->current_location }}" />
-                                <x-admin.input-field name="google_map_location" label="Google Map Location"
+                                <x-admin.form-input name="google_map_location" label="Google Map Location"
                                     value="{{ $shipment->current_location }}" />
-                                <x-admin.input-field name="description" label="Description" type="textarea" />
-                                <x-admin.input-field name="date" label="Date" type="date" />
-                                <x-admin.input-field name="time" label="Time" type="time" />
-                                <x-admin.input-field name="notification" label="Notification" type="select"
+                                <x-admin.form-input name="description" label="Description" type="textarea" />
+                                <x-admin.form-input name="date" label="Date" type="date" />
+                                <x-admin.form-input name="time" label="Time" type="time" />
+                                <x-admin.form-select name="notification" label="Notification" type="select"
                                     :options="['None', 'Email']" />
 
-                                <x-admin.form-submit-button>Update</x-admin.form-submit-button>
+                                <x-admin.form-button>Update</x-admin.form-button>
                             </div>
                         </form>
                     </div>

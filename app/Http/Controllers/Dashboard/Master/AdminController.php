@@ -87,17 +87,15 @@ class AdminController extends Controller
 
             $admin = User::where('uuid', $uuid)->where('role', 'admin')->firstOrFail();
 
-            $data = [
-                'name' => $request->name,
-                'email' => $request->email,
-                'is_active' => $request->is_active,
-            ];
+            $admin->name = $request->name;
+            $admin->email = $request->email;
+            $admin->is_active = $request->is_active;
 
             if ($request->password) {
-                $data['password'] = Hash::make($request->password);
+                $admin->password = Hash::make($request->password);
             }
 
-            $admin->update($data);
+            $admin->save();
 
             DB::commit();
             return redirect()->route('master.admin.index')->with('success', config('messages.success'));
