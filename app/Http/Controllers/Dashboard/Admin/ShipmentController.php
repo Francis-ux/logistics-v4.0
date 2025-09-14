@@ -195,7 +195,7 @@ class ShipmentController extends Controller
         try {
             $shipment = Shipment::with('shipmentLocation')->where('uuid', $uuid)->firstOrFail();
 
-            getQRCode(route('cargo.tracking.details', $shipment->uuid));
+            getQRCode(route('tracking.show', $shipment->uuid));
 
             $data = [
                 'shipment' => $shipment,
