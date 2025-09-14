@@ -70,8 +70,8 @@
                                         <li class="{{ request()->routeIs('services') ? 'active' : '' }}">
                                             <a href="{{ route('services') }}">Services</a>
                                         </li>
-                                        <li class="{{ request()->routeIs('cargo.tracking.*') ? 'active' : '' }}">
-                                            <a href="{{ route('cargo.tracking.index') }}">Track</a>
+                                        <li class="{{ request()->routeIs('tracking.*') ? 'active' : '' }}">
+                                            <a href="{{ route('tracking.index') }}">Track</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -230,9 +230,8 @@
                                                 <li class="{{ request()->routeIs('services') ? 'active' : '' }}">
                                                     <a href="{{ route('services') }}">Services</a>
                                                 </li>
-                                                <li
-                                                    class="{{ request()->routeIs('cargo.tracking.*') ? 'active' : '' }}">
-                                                    <a href="{{ route('cargo.tracking.index') }}">Track</a>
+                                                <li class="{{ request()->routeIs('tracking.*') ? 'active' : '' }}">
+                                                    <a href="{{ route('tracking.index') }}">Track</a>
                                                 </li>
                                             </ul>
                                         </div>

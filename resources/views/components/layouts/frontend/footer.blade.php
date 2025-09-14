@@ -60,7 +60,7 @@
                                  <li><a href="{{ route('services') }}">Our Service</a></li>
                                  <li><a href="{{ route('contact.index') }}">Contact</a></li>
                                  <li><a href="{{ route('faq') }}">Faqs</a></li>
-                                 <li><a href="{{ route('cargo.tracking.index') }}">Track</a></li>
+                                 <li><a href="{{ route('tracking.index') }}">Track</a></li>
                              </ul>
                          </aside>
                      </div>

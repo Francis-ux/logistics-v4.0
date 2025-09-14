@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CargoTrackingControllerStoreRequest extends FormRequest
+class TrackingControllerStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class CargoTrackingControllerStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tracking_number' => 'required',
+            'tracking_number' => ['required', 'string', 'max:255'],
         ];
     }
 }
