@@ -33,53 +33,34 @@
                              <div class="pbmit-footer-logo">
                                  <img src="/frontend/images/footer-logo.svg" class="img-fluid" alt="">
                              </div><br>
-                             <ul class="pbmit-social-links">
-                                 <li class="pbmit-social-li pbmit-social-facebook">
-                                     <a title="Facebook" href="#" target="_blank">
-                                         <span><i class="pbmit-base-icon-facebook-f"></i></span>
-                                     </a>
-                                 </li>
-                                 <li class="pbmit-social-li pbmit-social-twitter">
-                                     <a title="Twitter" href="#" target="_blank">
-                                         <span><i class="pbmit-base-icon-twitter-2"></i></span>
-                                     </a>
-                                 </li>
-                                 <li class="pbmit-social-li pbmit-social-linkedin">
-                                     <a title="LinkedIn" href="#" target="_blank">
-                                         <span><i class="pbmit-base-icon-linkedin-in"></i></span>
-                                     </a>
-                                 </li>
-                                 <li class="pbmit-social-li pbmit-social-instagram">
-                                     <a title="Instagram" href="#" target="_blank">
-                                         <span><i class="pbmit-base-icon-instagram"></i></span>
-                                     </a>
-                                 </li>
-                             </ul>
                          </aside>
                      </div>
                      <div class="pbmit-footer-widget-col-2 col-md-4">
-                         <aside class="widget">
-                             <h2 class="widget-title">Say Hello</h2>
-                             <div class="pbmit-contact-widget-lines">
-                                 <div class="pbmit-contact-widget-line pbmit-base-icon-phone">+1 800 123
-                                     456 789</div>
-                                 <div class="pbmit-contact-widget-line pbmit-base-icon-email"><a
-                                         href="https://shipex-demo.pbminfotech.com/cdn-cgi/l/email-protection"
-                                         class="__cf_email__"
-                                         data-cfemail="9df3f2b0eff8edf1e4ddedfff0f4f3fbf2e9f8fef5b3fef2f0">[email&#160;protected]</a>
+                         @if (config('contact.phone') && config('contact.email'))
+                             <aside class="widget">
+                                 <h2 class="widget-title">Say Hello</h2>
+                                 <div class="pbmit-contact-widget-lines">
+                                     <div class="pbmit-contact-widget-line pbmit-base-icon-phone">
+                                         <a href="tel:+{{ config('contact.phone') }}"
+                                             class="text-light">{{ config('contact.phone') }}</a>
+                                     </div>
+                                     <div class="pbmit-contact-widget-line pbmit-base-icon-email"><a
+                                             href="mailto:{{ config('contact.email') }}"
+                                             class="text-light">{{ config('contact.email') }}</a>
+                                     </div>
                                  </div>
-                             </div>
-                         </aside>
+                             </aside>
+                         @endif
                      </div>
                      <div class="pbmit-footer-widget-col-3 col-md-2">
                          <aside class="widget">
                              <h2 class="widget-title">Useful Link</h2>
                              <ul class="menu">
-                                 <li><a href="about-us.html">About</a></li>
-                                 <li><a href="services.html">Our Service</a></li>
-                                 <li><a href="our-history.html">Company</a></li>
-                                 <li><a href="blog-classic.html">News & Media</a></li>
-                                 <li><a href="our-team.html">Team</a></li>
+                                 <li><a href="{{ route('about') }}">About</a></li>
+                                 <li><a href="{{ route('services') }}">Our Service</a></li>
+                                 <li><a href="{{ route('contact.index') }}">Contact</a></li>
+                                 <li><a href="{{ route('faq') }}">Faqs</a></li>
+                                 <li><a href="{{ route('cargo.tracking.index') }}">Track</a></li>
                              </ul>
                          </aside>
                      </div>
@@ -87,11 +68,11 @@
                          <aside class="widget widget_text">
                              <h2 class="widget-title">Our Services</h2>
                              <ul class="menu">
-                                 <li><a href="blog-classic.html">Logistics</a></li>
-                                 <li><a href="blog-classic.html">Manufacturing</a></li>
-                                 <li><a href="blog-classic.html">Production</a></li>
-                                 <li><a href="blog-classic.html">Transportation</a></li>
-                                 <li><a href="blog-classic.html">Warehouse</a></li>
+                                 <li><a href="#">Logistics</a></li>
+                                 <li><a href="#">Manufacturing</a></li>
+                                 <li><a href="#">Production</a></li>
+                                 <li><a href="#">Transportation</a></li>
+                                 <li><a href="#">Warehouse</a></li>
                              </ul>
                          </aside>
                      </div>
@@ -104,7 +85,7 @@
                      <div class="row">
                          <div class="col-md-12">
                              <div class="pbmit-footer-copyright-text-area">
-                                 Copyright © 2025 <a href="#">Shipex Demo2</a>, All Rights Reserved.
+                                 Copyright © 2025 <a href="/">{{ config('app.name') }}</a>, All Rights Reserved.
                              </div>
                          </div>
                      </div>

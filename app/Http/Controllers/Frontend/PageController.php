@@ -11,18 +11,18 @@ class PageController extends Controller
     {
         $data = ['title' => 'About Us'];
 
-        return view('pages.about', $data);
+        return view('frontend.pages.about', $data);
     }
     public function services()
     {
         $data = ['title' => 'Services'];
 
-        return view('pages.services', $data);
+        return view('frontend.pages.services', $data);
     }
     public function faq()
     {
         $data = ['title' => 'Frequently Asked Questions'];
 
-        return view('pages.faq', $data);
+        return view('frontend.pages.faq', $data);
     }
 }

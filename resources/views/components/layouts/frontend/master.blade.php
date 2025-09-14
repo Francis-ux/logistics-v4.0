@@ -50,7 +50,7 @@
         <!-- page wrapper -->
         <div class="page-wrapper" id="page">
 
-            <x-layouts.frontend.header />
+            <x-layouts.frontend.header :title="$title" />
 
             <!-- Page Content -->
             <div class="page-content">

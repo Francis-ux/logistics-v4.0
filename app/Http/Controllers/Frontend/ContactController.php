@@ -7,5 +7,12 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    //
+    public function index()
+    {
+        $data = [
+            'title' => 'Contact Us'
+        ];
+
+        return view('frontend.contact.index', $data);
+    }
 }
