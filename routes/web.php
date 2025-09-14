@@ -7,12 +7,23 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Dashboard\Admin\DashboardController;
 use App\Http\Controllers\Dashboard\Admin\ShipmentLocationController;
 use App\Http\Controllers\Dashboard\Master\DashboardController as MasterDashboardController;
+use App\Http\Controllers\Frontend\CargoTrackingController;
+use App\Http\Controllers\Frontend\ContactController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\PageController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', HomeController::class)->name('home');
 
-Route::get('cargo/tracking/details/{shipment}', [ShipmentController::class, 'index'])->name('cargo.tracking.details');
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/services', [PageController::class, 'services'])->name('services');
+Route::get('/faq', [PageController::class, 'faq'])->name('faq');
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
+
+Route::get('/cargo/tracking', [CargoTrackingController::class, 'index'])->name('cargo.tracking.index');
+Route::post('/cargo/tracking/store', [CargoTrackingController::class, 'store'])->name('cargo.tracking.store');
+Route::get('/cargo/tracking/{shipment}', [CargoTrackingController::class, 'show'])->name('cargo.tracking.show');
 
 Route::middleware('guestUser')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
