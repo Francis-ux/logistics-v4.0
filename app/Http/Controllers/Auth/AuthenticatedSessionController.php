@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Enum\AdminIsActiveStatus;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Enum\AdminIsActiveStatus;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
 use App\Http\Requests\AuthenticatedSessionControllerStoreRequest;
 
 class AuthenticatedSessionController extends Controller
@@ -23,8 +25,22 @@ class AuthenticatedSessionController extends Controller
         $credentials = $request->only('email', 'password');
         $remember = $request->has('remember');
 
+        // Build a unique key for this user + IP combo
+        $key = Str::lower($request->input('email')) . '|' . $request->ip();
+
+        // Check for too many attempts
+        if (RateLimiter::tooManyAttempts($key, 5)) {
+            $seconds = RateLimiter::availableIn($key);
+            return back()
+                ->withErrors(['email' => "Too many login attempts. Please try again in {$seconds} seconds."])
+                ->onlyInput('email');
+        }
+
         try {
             if (Auth::attempt($credentials, $remember)) {
+                // Successful login → Clear attempts
+                RateLimiter::clear($key);
+
                 if (Auth::user()->role === 'admin') {
                     if (Auth::user()->is_active === AdminIsActiveStatus::INACTIVE) {
                         Auth::logout();
@@ -33,17 +49,20 @@ class AuthenticatedSessionController extends Controller
                         ])->onlyInput('email');
                     }
 
-                    return redirect()->route('admin.dashboard')->with('success', 'Login successful');
-
                     request()->session()->regenerate();
+
+                    return redirect()->route('admin.dashboard')->with('success', 'Login successful');
                 }
 
                 if (Auth::user()->role === 'master') {
-                    return redirect()->route('master.dashboard')->with('success', 'Login successful');
-
                     request()->session()->regenerate();
+
+                    return redirect()->route('master.dashboard')->with('success', 'Login successful');
                 }
             }
+
+            // Failed login → Record attempt and throttle for 60 seconds
+            RateLimiter::hit($key, 60);
 
             return back()->withErrors([
                 'email' => 'The provided credentials do not match our records.',
