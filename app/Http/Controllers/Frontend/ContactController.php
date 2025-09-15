@@ -25,7 +25,18 @@ class ContactController extends Controller
         $validated = $request->validated();
 
         try {
-            Mail::to(config('contact.email'))->send(new Contact($validated, 'Contact Notification'));
+            // Mail::to(config('contact.email'))->later(now()->addMinutes(1), new Contact($validated, 'Contact Notification'));
+
+            // OR with onQueue and delay together:
+            
+            // Mail::to(config('contact.email'))
+            //     ->queue(
+            //         (new Contact($validated, 'Contact Notification'))
+            //             ->onQueue('emails')
+            //             ->delay(now()->addMinutes(5))
+            //     );
+
+            Mail::to(config('contact.email'))->queue(new Contact($validated, 'Contact Notification'));
 
             return redirect()->route('contact.index')->with('success', config('messages.success'));
         } catch (\Exception $e) {
