@@ -157,32 +157,60 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-xl-6 mb-5">
+                    <x-partials.bootstrap-alert />
                     <div class="contact-form-rightbox pbmit-bg-color-white">
                         <div class="pbmit-heading animation-style2">
                             <h2 class="pbmit-title">Send a message to our team</h2>
                         </div>
-                        <p>Your email address will remain confidential. Required fields are marked *</p>
+                        <p>Your email address will remain confidential.</p>
                         <form class="contact-form" method="post" id="contact-form"
-                            action="https://shipex-demo.pbminfotech.com/html-demo/send.php">
+                            action="{{ route('contact.store') }}">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="Your Name" name="name"
-                                        required>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                        placeholder="Your Name" name="name" required>
+                                    @error('name')
+                                        <span class="invalid-feedback mb-3">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="email" class="form-control" placeholder="Your Email" name="email"
-                                        required>
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                        placeholder="Your Email" name="email" required>
+                                    @error('email')
+                                        <span class="invalid-feedback mb-3">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="tel" class="form-control" placeholder="Your Phone" name="phone"
-                                        required>
+                                    <input type="tel" class="form-control @error('phone') is-invalid @enderror"
+                                        placeholder="Your Phone" name="phone" required>
+                                    @error('phone')
+                                        <span class="invalid-feedback mb-3">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="Subject" name="subject"
-                                        required>
+                                    <input type="text" class="form-control @error('subject') is-invalid @enderror"
+                                        placeholder="Subject" name="subject" required>
+                                    @error('subject')
+                                        <span class="invalid-feedback mb-3">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea name="message" cols="40" rows="10" class="form-control" placeholder="Message" required></textarea>
+                                    <textarea name="message" cols="40" rows="10" class="form-control @error('message') is-invalid @enderror"
+                                        placeholder="Message" required></textarea>
+                                    @error('message')
+                                        <span class="invalid-feedback mb-3">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <button class="pbmit-btn submit my-4">
@@ -212,7 +240,6 @@
                                     </svg>
                                 </span>
                             </button>
-                            <div class="col-md-12 col-lg-12 message-status"></div>
                         </form>
                     </div>
                 </div>
