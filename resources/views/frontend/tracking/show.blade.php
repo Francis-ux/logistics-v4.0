@@ -142,7 +142,8 @@
                                                     class="location-text {{ $shipment->status->value == $shipmentLocation->status->value && $shipment->current_location == $shipmentLocation->location ? 'blink' : '' }}">
                                                     {{ $shipment->status->value == $shipmentLocation->status->value && $shipment->current_location == $shipmentLocation->location ? "Current location: $shipmentLocation->location" : "Previous location: $shipmentLocation->location" }}
                                                 </p>
-                                                <small class="location-date">{{ $shipmentLocation->date }}</small>
+                                                <small class="location-date">{{ formatDate($shipmentLocation->date) }}
+                                                    {{ formatTime($shipmentLocation->time) }}</small>
                                                 <small
                                                     class="location-status">{{ $shipmentLocation->status->value }}</small>
                                             </address>

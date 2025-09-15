@@ -106,7 +106,7 @@
                                     </h2>
                                     <div class="pbmit-button">
                                         <div class="transform-bottom transform-delay-3">
-                                            <a class="pbmit-btn" href="services.html">
+                                            <a class="pbmit-btn" href="{{ route('services') }}">
                                                 <span class="pbmit-button-content-wrapper">
                                                     <span class="pbmit-button-text">Our Services</span>
                                                 </span>
@@ -133,7 +133,7 @@
                                     </h2>
                                     <div class="pbmit-button">
                                         <div class="transform-bottom transform-delay-3">
-                                            <a class="pbmit-btn" href="services.html">
+                                            <a class="pbmit-btn" href="{{ route('services') }}">
                                                 <span class="pbmit-button-content-wrapper">
                                                     <span class="pbmit-button-text">Our Services</span>
                                                 </span>
@@ -160,7 +160,7 @@
                                     </h2>
                                     <div class="pbmit-button">
                                         <div class="transform-bottom transform-delay-3">
-                                            <a class="pbmit-btn" href="services.html">
+                                            <a class="pbmit-btn" href="{{ route('services') }}">
                                                 <span class="pbmit-button-content-wrapper">
                                                     <span class="pbmit-button-text">Our Services</span>
                                                 </span>

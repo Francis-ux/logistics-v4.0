@@ -1,30 +1,6 @@
  <!-- footer -->
  <footer class="site-footer pbmit-bg-color-secondary">
      <div class="pbmit-footer-big-area-wrapper">
-         <div class="pbmit-footer-big-area">
-             <div class="container">
-                 <div class="row align-items-center">
-                     <div class="col-md-12 col-xl-6 pbmit-footer-left">
-                         <h3>Subscribe for latest <br> updates & insights</h3>
-                     </div>
-                     <div class="col-md-12 col-xl-6">
-                         <form>
-                             <div class="pbmit-footer-newsletter">
-                                 <div class="pbmit-news-wrap">
-                                     <input type="email" class="form-control" name="EMAIL"
-                                         placeholder="Enter Your Email Address">
-                                     <button class="pbmit-btn">
-                                         <span class="pbmit-button-content-wrapper">
-                                             <span class="pbmit-button-text">Subscribe Now</span>
-                                         </span>
-                                     </button>
-                                 </div>
-                             </div>
-                         </form>
-                     </div>
-                 </div>
-             </div>
-         </div>
          <div class="pbmit-footer-widget-area">
              <div class="container">
                  <div class="row">

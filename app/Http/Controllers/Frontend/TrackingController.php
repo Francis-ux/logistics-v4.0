@@ -25,9 +25,8 @@ class TrackingController extends Controller
 
             if (!$shipment) {
                 session()->flash('error', 'Invalid tracking code');
-                return back()->withErrors([
-                    'tracking_number' => 'Invalid tracking code',
-                ])->onlyInput('email');
+
+                return redirect()->back();
             }
 
             return redirect()->route('tracking.show', $shipment->uuid)->with('success', 'Shipment found');

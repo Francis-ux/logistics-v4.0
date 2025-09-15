@@ -144,24 +144,24 @@
                 <div class="col-md-12 col-xl-6">
                     <div class="contact-us-left-area">
                         <div class="pbmit-heading-subheading animation-style4">
-                            <h4 class="pbmit-subtitle">Contact us</h4>
-                            <h2 class="pbmit-title">Write us what you want to know</h2>
+                            <h4 class="pbmit-subtitle">Contact Us</h4>
+                            <h2 class="pbmit-title">Tell us what you’d like to know</h2>
                             <div class="pbmit-heading-desc">
-                                We carefully screen all of our cleaners, so you can rest assured that <br> your home
-                                would receive the absolute highest quality of service providing.
+                                Our team is here to provide quick answers and helpful guidance.<br>
+                                Send us your questions or requests, and we’ll get back to you promptly.
                             </div>
                         </div>
                         <div class="contact-bg-img">
-                            <img src="images/img.png" alt="">
+                            <img src="/frontend/images/img.png" alt="Contact illustration">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 col-xl-6">
+                <div class="col-md-12 col-xl-6 mb-5">
                     <div class="contact-form-rightbox pbmit-bg-color-white">
                         <div class="pbmit-heading animation-style2">
-                            <h2 class="pbmit-title">Send a message to staff</h2>
+                            <h2 class="pbmit-title">Send a message to our team</h2>
                         </div>
-                        <p>Your email address will not be published. Required fields are marked *</p>
+                        <p>Your email address will remain confidential. Required fields are marked *</p>
                         <form class="contact-form" method="post" id="contact-form"
                             action="https://shipex-demo.pbminfotech.com/html-demo/send.php">
                             <div class="row">
@@ -184,19 +184,10 @@
                                 <div class="col-md-12">
                                     <textarea name="message" cols="40" rows="10" class="form-control" placeholder="Message" required></textarea>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox">
-                                            Save my name, email, and website in this browser for the next time I
-                                            comment.
-                                        </label>
-                                    </div>
-                                </div>
                             </div>
                             <button class="pbmit-btn submit my-4">
                                 <span class="pbmit-button-content-wrapper">
-                                    <span class="pbmit-button-text">Get Cost Estimate</span>
+                                    <span class="pbmit-button-text">Submit</span>
                                 </span>
                                 <span class="form-btn-loader d-none">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100">
@@ -227,6 +218,7 @@
                 </div>
             </div>
         </div>
+
     </section>
     <!-- Contact Form End -->
 </x-layouts.frontend.master>
