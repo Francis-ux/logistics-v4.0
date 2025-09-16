@@ -26,13 +26,9 @@
         <div class="pbmit-main-header-area">
             <div class="container-fluid p-0">
                 <div class="pbmit-header-content d-flex justify-content-between align-items-center">
-                    <div class="site-branding">
-                        <h1 class="site-title">
-                            <a href="/">
-                                <img class="logo-img" src="/frontend/images/logo.svg" alt="Xleb">
-                            </a>
-                        </h1>
-                    </div>
+                    <a href="/">
+                        <img class="logo-img" width="250" src="{{ asset(config('assets.logo')) }}" alt="Xleb">
+                    </a>
                     <div class="site-navigation">
                         <nav class="main-menu navbar-expand-xl navbar-light">
                             <div class="navbar-header">
@@ -186,13 +182,10 @@
                 <div class="container-fluid">
                     <div class="pbmit-header-content d-flex justify-content-between align-items-center">
                         <div class="pbmit-logo-menuarea d-flex justify-content-between align-items-center">
-                            <div class="site-branding">
-                                <h1 class="site-title">
-                                    <a href="/">
-                                        <img class="logo-img" src="/frontend/images/logo-white.svg" alt="Shipex">
-                                    </a>
-                                </h1>
-                            </div>
+                            <a href="/">
+                                <img class="logo-img" width="250" src="{{ asset(config('assets.logo_light')) }}"
+                                    alt="Shipex">
+                            </a>
                             <div class="site-navigation">
                                 <nav class="main-menu navbar-expand-xl navbar-light">
                                     <div class="navbar-header">

@@ -7,7 +7,7 @@
                      <div class="pbmit-footer-widget-col-1 col-md-4">
                          <aside class="widget">
                              <div class="pbmit-footer-logo">
-                                 <img src="/frontend/images/footer-logo.svg" class="img-fluid" alt="">
+                                 <img src="{{ asset(config('assets.logo_light')) }}" width="250">
                              </div><br>
                          </aside>
                      </div>
@@ -44,11 +44,11 @@
                          <aside class="widget widget_text">
                              <h2 class="widget-title">Our Services</h2>
                              <ul class="menu">
-                                 <li><a href="#">Logistics</a></li>
-                                 <li><a href="#">Manufacturing</a></li>
-                                 <li><a href="#">Production</a></li>
-                                 <li><a href="#">Transportation</a></li>
-                                 <li><a href="#">Warehouse</a></li>
+                                 <li><a href="{{ route('services') }}">Warehouse Storage</a></li>
+                                 <li><a href="{{ route('services') }}">Freight Forwarding</a></li>
+                                 <li><a href="{{ route('services') }}">Inventory Management</a></li>
+                                 <li><a href="{{ route('services') }}">Custom Brokerage</a></li>
+                                 <li><a href="{{ route('services') }}">Supply Chain Consulting</a></li>
                              </ul>
                          </aside>
                      </div>
