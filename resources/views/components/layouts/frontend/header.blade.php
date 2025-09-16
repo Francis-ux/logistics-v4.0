@@ -86,6 +86,7 @@
             <div class="swiper-slider" data-autoplay="true" data-loop="true" data-dots="true" data-arrows="false"
                 data-columns="1" data-margin="0" data-effect="fade">
                 <div class="swiper-wrapper">
+
                     <!-- Slide1 -->
                     <div class="swiper-slide">
                         <div class="pbmit-slider-item">
@@ -95,16 +96,16 @@
                             <div class="container">
                                 <div class="pbmit-slider-content">
                                     <h5 class="pbmit-sub-title transform-delay-1">
-                                        <span>Logistic Transportation</span>
+                                        <span>Global Logistics Solutions</span>
                                     </h5>
                                     <h2 class="pbmit-title transform-left transform-delay-2">
-                                        <span>Committed to <br> Your Logistics <br> Needs.</span>
+                                        <span>Dedicated to <br> Delivering Your <br> Supply Chain Success</span>
                                     </h2>
                                     <div class="pbmit-button">
                                         <div class="transform-bottom transform-delay-3">
                                             <a class="pbmit-btn" href="{{ route('services') }}">
                                                 <span class="pbmit-button-content-wrapper">
-                                                    <span class="pbmit-button-text">Our Services</span>
+                                                    <span class="pbmit-button-text">Explore Services</span>
                                                 </span>
                                             </a>
                                         </div>
@@ -113,6 +114,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Slide2 -->
                     <div class="swiper-slide">
                         <div class="pbmit-slider-item">
@@ -122,16 +124,16 @@
                             <div class="container">
                                 <div class="pbmit-slider-content">
                                     <h5 class="pbmit-sub-title transform-delay-1">
-                                        <span>Logistic Transportation</span>
+                                        <span>Reliable Freight & Transport</span>
                                     </h5>
                                     <h2 class="pbmit-title transform-left transform-delay-2">
-                                        <span>Get Connected <br> To The World <br> Wide.</span>
+                                        <span>Connecting Your <br> Business to the <br> World Efficiently</span>
                                     </h2>
                                     <div class="pbmit-button">
                                         <div class="transform-bottom transform-delay-3">
                                             <a class="pbmit-btn" href="{{ route('services') }}">
                                                 <span class="pbmit-button-content-wrapper">
-                                                    <span class="pbmit-button-text">Our Services</span>
+                                                    <span class="pbmit-button-text">Explore Services</span>
                                                 </span>
                                             </a>
                                         </div>
@@ -140,6 +142,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Slide3 -->
                     <div class="swiper-slide">
                         <div class="pbmit-slider-item">
@@ -149,16 +152,16 @@
                             <div class="container">
                                 <div class="pbmit-slider-content">
                                     <h5 class="pbmit-sub-title transform-delay-1">
-                                        <span>Logistic Transportation</span>
+                                        <span>End-to-End Logistics</span>
                                     </h5>
                                     <h2 class="pbmit-title transform-left transform-delay-2">
-                                        <span>Moving Your <br> Products All <br> Borders.</span>
+                                        <span>Seamless Delivery <br> Across Borders & <br> Industries</span>
                                     </h2>
                                     <div class="pbmit-button">
                                         <div class="transform-bottom transform-delay-3">
                                             <a class="pbmit-btn" href="{{ route('services') }}">
                                                 <span class="pbmit-button-content-wrapper">
-                                                    <span class="pbmit-button-text">Our Services</span>
+                                                    <span class="pbmit-button-text">Explore Services</span>
                                                 </span>
                                             </a>
                                         </div>
@@ -167,6 +170,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
