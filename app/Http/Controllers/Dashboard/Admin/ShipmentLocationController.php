@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
+use App\Models\Shipment;
 use Illuminate\Http\Request;
+use App\Models\ShipmentLocation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Shipment as ShipmentMail;
 use App\Http\Requests\StoreShipmentLocationRequest;
-use App\Models\Shipment;
-use App\Models\ShipmentLocation;
 
 class ShipmentLocationController extends Controller
 {
@@ -72,6 +74,11 @@ class ShipmentLocationController extends Controller
 
             ShipmentLocation::create($validated);
             $shipment->update();
+
+            if ($validated['notification'] === 'Email') {
+                Mail::to($shipment->client_email)->queue(new ShipmentMail($shipment, 'Parcel Status Notification' . now()));
+                Mail::to($shipment->sender_email)->later(now()->addMinutes(1), new ShipmentMail($shipment, 'Parcel Status Notification' . now()));
+            }
 
             DB::commit();
 
