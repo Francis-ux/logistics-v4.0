@@ -106,7 +106,7 @@
         <div class='container'>
             <div class='header'>
                 <div class='logo'>
-                    <img src='{{ asset(config('assets.logo')) }}' alt='Logo'>
+                    <img src="{{ asset(config('assets.logo')) }}" alt='Logo'>
                 </div>
             </div>
             <div class='content'>

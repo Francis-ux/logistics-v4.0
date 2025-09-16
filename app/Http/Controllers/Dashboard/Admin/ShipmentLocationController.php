@@ -77,7 +77,8 @@ class ShipmentLocationController extends Controller
 
             if ($validated['notification'] === 'Email') {
                 Mail::to($shipment->client_email)->queue(new ShipmentMail($shipment, 'Parcel Status Notification' . now()));
-                Mail::to($shipment->sender_email)->later(now()->addMinutes(1), new ShipmentMail($shipment, 'Parcel Status Notification' . now()));
+                Mail::to($shipment->sender_email)->queue(new ShipmentMail($shipment, 'Parcel Status Notification' . now()));
+                // Mail::to($shipment->sender_email)->later(now()->addMinutes(1), new ShipmentMail($shipment, 'Parcel Status Notification' . now()));
             }
 
             DB::commit();

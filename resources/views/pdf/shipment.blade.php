@@ -181,7 +181,7 @@
                 <!-- Contact -->
                 <td style="width: 40%; vertical-align: middle; text-align: right; padding-right: 10px;">
                     <p style="margin: 0; font-size: 14px; font-weight: bold;">Contact Us</p>
-                    <p style="margin: 2px 0; font-size: 10px;">Address: {{ config('contact.address') }}</p>
+                    <p style="margin: 2px 0; font-size: 10px;">{{ config('contact.address') }}</p>
                     <p style="margin: 2px 0; font-size: 10px;">{{ config('contact.email') }}</p>
                 </td>
 
