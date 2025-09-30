@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Print Invoice</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="Delaware Depository Service" />
+    <meta name="keywords" content="Courier Delivery & Logistic Company" />
+    <meta name="author" content="Viz">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link href="css/bootstrap2.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
+    <link href="./css/print-invoice.min.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        #background {
+            position: absolute;
+            z-index: 0;
+            display: block;
+            min-height: 70%;
+            min-width: 70%;
+        }
+
+        #bg-text {
+            color: grey;
+            font-size: 36px;
+            transform: rotate(300deg);
+            -webkit-transform: rotate(300deg);
+        }
+    </style>
+</head>
+
+<!-- <body style="background-color:teal;"> -->
+
+<body style="background-color:teal;" onload="window.print();">
+
+    <div class="wrapper" id="background">
+        <p id="bg-text">Certified True Copy</p>
+
+        <section class="invoice">
+            <!-- title row -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="page-header">
+                        <span>
+                            <img src="images/logo.png" width="190" height="85" alt="Company Logo">
+                            <img class="pull-right" src="images/banner.png" height="185" alt="Banner">
+                            <h3 style="color:red;"><strong>Tracking Number: ABC123456</strong></h3>
+                        </span>
+                    </h2>
+                </div>
+            </div>
+
+            <!-- company info -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="page-header">
+                        <center>
+                            <strong style="color:green;">
+                                Delaware Depository Service Logistics & Delivery Company<br>
+                                Address: USA, UK, Canada, China, Asia and Europe<br>
+                                Email: info@dds-delivery.com<br>
+                                Company Website: www.dds-delivery.com
+                            </strong>
+                        </center>
+                    </h2>
+                </div>
+            </div>
+
+            <!-- info row -->
+            <div class="row invoice-info">
+                <div class="col-sm-4 invoice-col">
+                    <strong style="color:blue;">FROM (SENDER)</strong>
+                    <address>
+                        <h3><strong style="color:green;">John Doe</strong></h3>
+                        <b>Address:</b> 123 Sender St, New York, USA<br>
+                        <b>Phone No:</b> +1 555-123-4567<br>
+                        <b>Origin Office:</b> New York
+                    </address>
+                </div>
+
+                <div class="col-sm-4 invoice-col">
+                    <strong style="color:blue;">TO (CONSIGNEE)</strong>
+                    <address>
+                        <h3><strong style="color:green;">Jane Smith</strong></h3>
+                        <b>Address:</b> 789 Receiver Ave, London, UK<br>
+                        <b>Phone:</b> +44 20 7946 1234<br>
+                        <b>Destination Office:</b> London
+                    </address>
+                </div>
+
+                <div class="col-sm-4 invoice-col">
+                    <center>
+                        <img src="images/barcode810e.png" alt="Barcode"><br>
+                        <strong>ABC123456</strong><br>
+                    </center>
+                    <br>
+                    <b>Order ID:</b> 1001<br>
+                    <b>Est. Delivery Date:</b> 12-Oct-2025<br>
+                    <b>Payment Mode:</b> <small class="label label-danger"><i class="fa fa-money"></i> Cash</small><br>
+                    <b>Mode of Transport:</b> Air Freight<br>
+                </div>
+            </div>
+
+            <!-- table row -->
+            <div class="row">
+                <div class="col-xs-12 table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Qty</th>
+                                <th>Type of Shipment</th>
+                                <th>Product</th>
+                                <th>Description</th>
+                                <th>Total Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2</td>
+                                <td>Express</td>
+                                <td>Laptop</td>
+                                <td>In Transit</td>
+                                <td>$150</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- payment row -->
+            <div class="row">
+                <div class="col-xs-6">
+                    <p class="lead"><strong>Payment Methods:</strong></p>
+                    <img src="images/securepayment.png" alt="Payment Methods">
+                </div>
+
+                <div class="col-xs-6">
+                    <p class="lead"><strong>Official Stamp / Monday, 30-Sep-2025</strong></p>
+                    <img src="images/stamp1.png" alt="Stamp" height="100">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/app.min.js"></script>
+</body>
+
+</html>

@@ -192,27 +192,34 @@ class ShipmentController extends Controller
 
     public function download(string $uuid)
     {
-        try {
-            $shipment = Shipment::with('shipmentLocation')->where('uuid', $uuid)->firstOrFail();
+        // try {
+        //     $shipment = Shipment::with('shipmentLocation')->where('uuid', $uuid)->firstOrFail();
 
-            getQRCode(route('tracking.show', $shipment->uuid));
+        //     getQRCode(route('tracking.show', $shipment->uuid));
 
-            $data = [
-                'shipment' => $shipment,
-            ];
+        //     $data = [
+        //         'shipment' => $shipment,
+        //     ];
 
-            $name = config('app.name') . '-' . 'Receipt';
+        //     $name = config('app.name') . '-' . 'Receipt';
 
-            $pdf = Pdf::loadView('pdf.shipment', $data);
+        //     $pdf = Pdf::loadView('pdf.shipment', $data);
 
-            if (config('app.env') == 'production') {
-                return $pdf->download($name);
-            } else {
-                return $pdf->stream($name);
-            }
-        } catch (\Exception $e) {
-            Log::error($e->getMessage());
-            return redirect()->back()->with('error', config('messages.error'));
-        }
+        //     if (config('app.env') == 'production') {
+        //         return $pdf->download($name);
+        //     } else {
+        //         return $pdf->stream($name);
+        //     }
+        // } catch (\Exception $e) {
+        //     Log::error($e->getMessage());
+        //     return redirect()->back()->with('error', config('messages.error'));
+        // }
+
+        $shipment = Shipment::with('shipmentLocation')->where('uuid', $uuid)->firstOrFail();
+
+        $data = [
+            'shipment' => $shipment
+        ];
+        return view('pdf.shipment2', $data);
     }
 }
